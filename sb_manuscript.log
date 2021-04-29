@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2020.1.16)  27 APR 2021 11:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2020.1.16)  29 APR 2021 13:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -692,57 +692,58 @@ File: images/map.png Graphic file (type png)
 <use images/map.png>
 Package pdftex.def Info: images/map.png  used on input line 351.
 (pdftex.def)             Requested size: 469.76265pt x 469.76265pt.
-[8] [9 <./images/map.png (PNG copy)>] [10] [11] [12] [13]
-<images/big_plot.pdf, id=83, 722.7pt x 722.7pt>
+[8] [9 <./images/map.png (PNG copy)>] [10] [11] [12] [13] [14]
+<images/big_plot.pdf, id=92, 722.7pt x 722.7pt>
 File: images/big_plot.pdf Graphic file (type pdf)
 <use images/big_plot.pdf>
-Package pdftex.def Info: images/big_plot.pdf  used on input line 581.
+Package pdftex.def Info: images/big_plot.pdf  used on input line 587.
 (pdftex.def)             Requested size: 469.76045pt x 469.76045pt.
 
-LaTeX Warning: Float too large for page by 5.66376pt on input line 598.
+LaTeX Warning: Float too large for page by 5.66376pt on input line 604.
 
-<images/jsdm_stuff.png, id=84, 903.375pt x 433.62pt>
+<images/jsdm_stuff.png, id=93, 903.375pt x 433.62pt>
 File: images/jsdm_stuff.png Graphic file (type png)
 <use images/jsdm_stuff.png>
-Package pdftex.def Info: images/jsdm_stuff.png  used on input line 602.
+Package pdftex.def Info: images/jsdm_stuff.png  used on input line 608.
 (pdftex.def)             Requested size: 469.7577pt x 225.48369pt.
-[14] [15 <./images/big_plot.pdf>] [16 <./images/jsdm_stuff.png (PNG copy)>] [17
-] [18]
-<images/burnsev_fig.pdf, id=124, 252.945pt x 216.81pt>
+[15] [16 <./images/big_plot.pdf>] [17 <./images/jsdm_stuff.png (PNG copy)>] [18
+] [19]
+<images/burnsev_fig.pdf, id=133, 252.945pt x 216.81pt>
 File: images/burnsev_fig.pdf Graphic file (type pdf)
 <use images/burnsev_fig.pdf>
-Package pdftex.def Info: images/burnsev_fig.pdf  used on input line 740.
+Package pdftex.def Info: images/burnsev_fig.pdf  used on input line 761.
 (pdftex.def)             Requested size: 328.83232pt x 281.85626pt.
-[19] [20 <./images/burnsev_fig.pdf>] [21] [22] [23] [24] [25] [26] [27] [28] [2
-9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1396.
+[20] [21 <./images/burnsev_fig.pdf>] [22] [23] [24] [25] [26] [27] [28] [29]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1423.
 [30]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1396.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1423.
 (./sb_manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1396.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1396.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1423.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1423.
  ) 
 Here is how much of TeX's memory you used:
- 13540 strings out of 494532
- 195650 string characters out of 6176185
+ 13543 strings out of 494532
+ 195698 string characters out of 6176185
  313028 words of memory out of 5000000
- 16715 multiletter control sequences out of 15000+600000
- 54938 words of font info for 126 fonts, out of 8000000 for 9000
+ 16717 multiletter control sequences out of 15000+600000
+ 57939 words of font info for 127 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 35i,6n,38p,1208b,399s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,6n,38p,1208b,389s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
-c/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/s
+c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm
 /lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texm
-f/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
-ublic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on sb_manuscript.pdf (30 pages, 10582453 bytes).
+f/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10
+.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share
+/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on sb_manuscript.pdf (30 pages, 10610453 bytes).
 PDF statistics:
- 505 PDF objects out of 1000 (max. 8388607)
- 445 compressed objects within 5 object streams
- 141 named destinations out of 1000 (max. 500000)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 457 compressed objects within 5 object streams
+ 142 named destinations out of 1000 (max. 500000)
  12365 words of extra memory for PDF output out of 14400 (max. 10000000)
 
