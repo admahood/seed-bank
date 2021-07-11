@@ -6,7 +6,7 @@ library(effects)
 library(car)
 set.seed(1312)
 
-# funcitons --------------
+# functions --------------
 get_satvi <- function(band6, band7, band4,L=0.5){
  leftside<- ((band6-band4) / (band6+band4+L))*(1+L)
  return(leftside-(band7/2))
@@ -36,6 +36,7 @@ get_evi8 <- function(band2,band4,band5){
   return(2.5 * ((band5 - band4)/(band5 + (6 * band4) - (7.5 * band2) + 1)))
 }
 
+# getting the RS data =========================================================
 
 l8 <- stack("data/landsat/mtbs_bundle/mtbs/2016/nv4102211692120160702_20160622_l8_refl.tif")
 
@@ -55,10 +56,8 @@ names(rdnbr)<-"rdnbr"
 
 dnbr<- raster("data/landsat/mtbs_bundle/mtbs/2016/nv4102211692120160702_20160622_20160708_dnbr.tif")
 names(dnbr) <- "dnbr"
-# satvi <- get_satvi(band6 = l8$Layer_6,
-#                    band7 = l8$Layer_7,
-#                    band4 = l8$Layer_4)
-# names(satvi)<- "satvi"
+
+# calculating indexes =======================
 savi <- get_savi(band5 = l8$Layer_5,
                    band4 = l8$Layer_4)
 names(savi) <- "savi"
@@ -79,6 +78,7 @@ evi <- get_evi8(band2 = l8$Layer_2,
                 band5 = l8$Layer_5)
 names(evi) <- "evi"
 
+# making some mods =============================================================
 aim<- aim %>%
   mutate(ndsvi = get_ndsvi(band4 = sr_band3, band6 = sr_band5),
          green_ndvi = get_green_ndvi(band5 = sr_band4, band3 = sr_band2)) 
@@ -89,6 +89,8 @@ aim_long<- aim %>%
   dplyr::select(TotalFolia, green_ndvi, ndsvi, ndvi) %>%
   pivot_longer(cols = names(.)[2:4], names_to="variable", values_to = "value")
 
+# using the aim mod to predict tvc =============================================
+
 stk <- stack(rdnbr,dnbr, classes, ndvi,savi, ndsvi, ndti, green_ndvi, evi) %>%
   raster::sampleRegular(size=5000) %>%
   as.data.frame() %>%
@@ -98,6 +100,8 @@ stk <- stack(rdnbr,dnbr, classes, ndvi,savi, ndsvi, ndti, green_ndvi, evi) %>%
 stk_long<- stk%>%
   pivot_longer(cols = names(.)[4:ncol(.)], 
                names_to = "variable", values_to = "value")
+
+# model building remnants ===================
 
 # d <- stk[sample(nrow(stk), 5000),] 
 # 
@@ -122,6 +126,7 @@ stk_long<- stk%>%
 # lm(log(rdnbr)~green_ndvi, stk) ->mod3
 # summary(mod3)
 
+# modeling tvc =================================================================
 aim %>%
   mutate(veg01 = TotalFolia/100) %>%
   betareg::betareg(veg01 ~ green_ndvi*ndsvi, data=.) -> mod_aim;summary(mod_aim)
@@ -133,9 +138,9 @@ stk_pred <- stack(ndsvi, green_ndvi,evi) %>%
 
 stk_rdnbr <- stack(stk_pred*100, rdnbr, dnbr, classes) 
 
-# takes a few minutes
-usdm::Variogram(dnbr, lag=100, cutoff = 3000) %>% plot() # 1500 m
-usdm::Variogram(stk_pred, lag=100, cutoff = 3000) %>% plot() # 2500-ish
+# # takes a few minutes
+# usdm::Variogram(dnbr, lag=100, cutoff = 3000) %>% plot() # 1500 m
+# usdm::Variogram(stk_pred, lag=100, cutoff = 3000) %>% plot() # 2500-ish
 #
 
 df_preds<- stk_rdnbr %>%
@@ -145,10 +150,11 @@ df_preds<- stk_rdnbr %>%
   filter(class>1 & class<5)
 
 ggplot(df_preds, aes(x=x,y=y)) +geom_point()
-  
+
+# modeling dnbr via tvc ========================================================
+
 lm(dnbr~poly(layer,2),df_preds)-> predmod;predmod %>% summary
-lm((dnbr)~(layer), df_preds) %>% summary
-# mgcv::gam(dnbr~s(layer),data=df_preds)-> predmod;predmod %>% summary
+lm(sqrt(dnbr)~(layer), df_preds) %>% summary
 
 
 eff<-Effect("layer", partial.residuals=T, predmod) # oops
@@ -158,7 +164,7 @@ mod_eff <- data.frame(lwr = (eff$lower),
                        layer = eff$x$layer)
 
 rs_h1 <- ggplot(df_preds, aes(x=layer, y=dnbr)) +
-  geom_point(alpha = 0.1)+
+  geom_point(alpha = 0.25)+
   # geom_smooth(method = "lm",formula = "y~poly(x,2)", se=F,lwd=2, color='red') +
   geom_line(data=mod_eff, aes(y=upr), lty=2)+
   geom_line(data=mod_eff, aes(y=lwr), lty=2)+
@@ -169,43 +175,4 @@ rs_h1 <- ggplot(df_preds, aes(x=layer, y=dnbr)) +
   xlab("Modelled TVC") 
 
 save(rs_h1, file ="data/rs_H1.Rda")
-
-# ggplot(d_long, aes(x=value)) +
-#   geom_histogram() +
-#   facet_wrap(~variable, scales = "free")
-# 
-# ggplot(d, aes(x=(rdnbr))) +
-#   geom_histogram()
-# 
-# ggplot(d_long, aes(x=(value), y=(rdnbr))) +
-#   geom_point(alpha=0.1) +
-#   facet_wrap(~variable, scales = "free")+
-#   geom_smooth(method = "lm")
-
-ggplot(stk_long %>% filter(variable %in% c("ndvi", "ndsvi", "green_ndvi")), 
-       aes(x=value, y=log(rdnbr), color = as.factor(class))) +
-  geom_point(alpha=0.2)+
-  geom_smooth(method="lm",formula = "(y)~(x)")+
-  facet_grid(variable~class, scales = "free")
-  # geom_line(aes(y=predict(lm(log(rdnbr)~poly(evi), d))))
-
-
-ggplot(stk_long %>% filter(variable %in% c("ndvi", "ndsvi", "green_ndvi")),
-       aes(x=value, y = log(dnbr))) +
-  geom_bin2d()+
-  facet_grid(class~variable, scales="free") +
-  scale_fill_viridis() +
-  theme_classic()
-
-ggplot(aim_long,
-       aes(x=(value), y = TotalFolia)) +
-  geom_point()+
-  facet_wrap(~variable, scales="free") +
-  scale_fill_viridis() +
-  theme_classic()+
-  geom_smooth()
-
-
-ggplot(df_preds, aes(x=layer, y=log(rdnbr))) +
-  geom_point(alpha=0.5) +
-  geom_smooth(method = "lm",formula = "y~poly(x,2)")
+save(mod_aim, predmod, file = "data/rs_mods.Rda")

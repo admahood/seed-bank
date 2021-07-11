@@ -157,3 +157,4 @@ Anova(mod_divr_ff)
 summary(mod_divr_ff)
 summary(mod_divsh_ff)
 
+save(rdnbr_mod,mod_pf_ff,mod_divsh_ff, file = "data/main_mods.Rda")

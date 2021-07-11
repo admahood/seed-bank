@@ -21,7 +21,7 @@ p_h1 <- ggplot(d, aes(x=ff_continuity, y=rdnbr_b20)) +
   geom_line(data = mod2_eff,lty=2, aes(y=lwr))+
   geom_line(data = mod2_eff,lty=2, aes(y=upr)) +
   xlab("Pre-fire Fuel Connectivity (% Cover)") +
-  ylab("Burn Severity (RdNBR)") +
+  ylab("Burn Severity (dNBR)") +
   theme_classic()+
   theme(panel.border = element_rect(fill=NA, size =1))
 

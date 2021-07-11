@@ -267,14 +267,14 @@ plot3b <- function(mod, label){
 ## All together plot===================
 load("data/binomial_preds_plot.Rda")
 
-H1 <- ggarrange(p1,rs_h1,labels=c("(a)", ""), nrow=1)+
+H1 <- ggarrange(p1,rs_h1 + geom_point(alpha=0.25),labels=c("(a)", ""), nrow=1)+
   theme(panel.border = element_rect(fill=NA, size = 1))
 
 H4 <-  ggarrange(plot3b(mod_divsh_ff, label = "Post-Fire Diversity"))+
             theme(panel.border = element_rect(fill=NA, size = 1))
 H14 <- ggarrange(H1, H4, nrow=1, labels = c("(a)", "(d)"))
 
-H2<-  ggarrange(p_preds, labels = c("(b)"))+
+H2<-  ggarrange(p_preds + xlab ("Burn Severity (dNBR)"), labels = c("(b)"))+
     theme(panel.border = element_rect(fill=NA, size = 1))
 
 H3<- ggarrange(plot4(mod_pf_ff, label = "Post-Fire Fuel Connectivity",nrow=1),labels="(c)")+
@@ -332,5 +332,5 @@ ggplot(aes(y=seeds_per_sq_meter(count), x=Depth, fill = burned)) +
 
 sb_counts %>%
   group_by(burned, depth) %>%
-  dplyr::summarise(mean_cound = mean(count),
+  dplyr::summarise(mean_count = mean(count),
                    sd_count = sd(count))
