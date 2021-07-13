@@ -6,8 +6,7 @@ library(ggtext)
 source("R/modelling.R")
 theme_set(theme_classic()+
             theme(panel.border = element_rect(fill=NA, size = 1)))
-# side note: seeds per unit area might be a good idea
-# 5cm diameter
+
 closest <- function(x, x0) apply(outer(x, x0, FUN=function(x, x0) abs(x - x0)), 1, which.min)
 
 # H1 =======================================================================
@@ -22,10 +21,11 @@ p1 <- ggplot(d, aes(x=ff_continuity, y=rdnbr_b120)) +
   geom_line(data = mod2_eff,aes(y=fit)) +
   geom_line(data = mod2_eff,lty=2, aes(y=lwr))+
   geom_line(data = mod2_eff,lty=2, aes(y=upr)) +
-  xlab("Pre-fire TVC") +
+  xlab("*in situ* TVC") +
   ylab("Burn Severity (dNBR)") +
   theme_classic()+
-  theme(panel.border = element_rect(fill=NA, size =1))+
+  theme(panel.border = element_rect(fill=NA, size =1),
+        axis.title.x = element_markdown())+
   ggsave("images/fc_fig.png")
 
 load("data/rs_H1.Rda")
