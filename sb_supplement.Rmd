@@ -1,8 +1,9 @@
 ---
 fontsize: 11pt
 geometry: margin=1in
-header-includes: \newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}
+header-includes: \newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0}
   \renewcommand{\thefigure}{S\arabic{figure}}}
+ 
 output:
   pdf_document: 
     keep_tex: yes
@@ -11,11 +12,31 @@ output:
 
 \beginsupplement
 
+
 ```{r, message=F, echo=F, warning=F, results='asis'}
 library(knitr)
 library(dplyr)
 library(kableExtra)
 options(knitr.kable.NA = '')
+```
+
+
+
+Table S1. Vegetation indexes that were explored in the remote sensing analysis for hypothesis 1.
+
+| Index Name | Equation |
+|---------|------------|
+|Green NDVI|$\frac{NIR - Green}{NIR + Green}$|
+|SAVI|$\frac{NIR - Red}{NIR+Red} + 1.5$|
+|NDVI|$\frac{NIR - Red}{NIR + Red}$|
+|EVI|  $\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5$|
+|NDSVI|$\frac{SWIR_1 - Red}{SWIR_1 + Red}$|
+|NDTI|$\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}$|
+
+\newpage
+
+
+```{r,message=F, echo=F, warning=F, results='asis'}
 striped_index <- seq(3,33,2) # can delete once the bug is fixed
 read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
   dplyr::select(-species) %>%
@@ -39,6 +60,7 @@ read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
 
 ```
 
+\newpage
 
 ```{r, warning=F, message=F, echo=F}
 # table of model results
@@ -70,10 +92,17 @@ performance::compare_performance(mod_aim, predmod, rdnbr_mod,mod_pf_ff,mod_divsh
 ```
 
 <!-- ![Modelled abundance of germinable seeds for all species found at more than one location along a gradient of burn severity (RdNBR). Black line is the mean prediction. Upper axis limit is cut off at 17 seeds for ease of visualization.](images/poisson_preds_rdnbr.png) -->
+\newpage
+\newpage
 
 ![Total seed counts per plot.](images/depth_x_burned_counts.png)
 
+\newpage
+
+
 ![a) Model convergence diagnostics. On the left is the effective sample size after adjusting for autocorrelation (ideally 4,000), and on the right is the Gelman diagnostic, ideally 1. b) Predictor variables that had at least 80% support. Variables with 95% support are outlined in black. The level of transparency corresponds to the level of support. c) Variance partitioning by species. Average across all species per variable is given in the legend. Species are ordered by prevalence.](images/jsdm_stuff.png)
+
+\newpage
 
 
 ![Species richness at different sampling times and locations.](images/richness_fig.png)

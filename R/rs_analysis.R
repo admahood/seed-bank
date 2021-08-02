@@ -7,11 +7,7 @@ library(car)
 set.seed(1312)
 
 # functions --------------
-get_satvi <- function(band6, band7, band4,L=0.5){
- leftside<- ((band6-band4) / (band6+band4+L))*(1+L)
- return(leftside-(band7/2))
-}
-
+# this is all for landsat 8
 get_savi <- function(band5, band4,L=0.5){
   return((band5-band4) / (band5+band4+L))*(1+L)
 

@@ -42,6 +42,16 @@
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -59,7 +69,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}} \renewcommand{\thefigure}{S\arabic{figure}}}
+\newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -83,11 +93,31 @@
 
 \begin{document}
 
-\renewcommand{\thetable}{S\arabic{table}} \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0} \renewcommand{\thefigure}{S\arabic{figure}}
+
+Table S1. Vegetation indexes that were explored in the remote sensing
+analysis for hypothesis 1.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Index Name & Equation\tabularnewline
+\midrule
+\endhead
+Green NDVI & \(\frac{NIR - Green}{NIR + Green}\)\tabularnewline
+SAVI & \(\frac{NIR - Red}{NIR+Red} + 1.5\)\tabularnewline
+NDVI & \(\frac{NIR - Red}{NIR + Red}\)\tabularnewline
+EVI &
+\(\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5\)\tabularnewline
+NDSVI & \(\frac{SWIR_1 - Red}{SWIR_1 + Red}\)\tabularnewline
+NDTI & \(\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\newpage
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-1}Seeds germinated in the greenhouse from the cores we collected.}
+\caption{\label{tab:unnamed-chunk-2}Seeds germinated in the greenhouse from the cores we collected.}
 \resizebox{\linewidth}{!}{
 \fontsize{8}{10}\selectfont
 \begin{tabular}[t]{lrrrrrrrrrrrrrr}
@@ -155,9 +185,11 @@ Burn Severity (dNBR) & 195 & 307 & 300 & 226 & 266 & 143 & 211 & 191 & 99 & 181 
 \end{tabular}}
 \end{table}
 
+\newpage
+
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-2}Model performance metrics}
+\caption{\label{tab:unnamed-chunk-3}Model performance metrics}
 \centering
 \fontsize{8}{10}\selectfont
 \begin{tabular}[t]{lrrl}
@@ -173,11 +205,16 @@ H4: Post-Fire Diversity \textasciitilde{} Post-Fire Fuel Connectivity & 0.92 & 0
 \end{tabular}
 \end{table}
 
+\newpage
+\newpage
+
 \begin{figure}
 \centering
 \includegraphics{images/depth_x_burned_counts.png}
 \caption{Total seed counts per plot.}
 \end{figure}
+
+\newpage
 
 \begin{figure}
 \centering
@@ -190,6 +227,8 @@ in black. The level of transparency corresponds to the level of support.
 c) Variance partitioning by species. Average across all species per
 variable is given in the legend. Species are ordered by prevalence.}
 \end{figure}
+
+\newpage
 
 \begin{figure}
 \centering
