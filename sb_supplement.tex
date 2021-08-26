@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  11pt,
+  12pt,
 ]{article}
 \usepackage{lmodern}
 \usepackage{amsmath}
@@ -95,6 +95,39 @@
 
 \renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0} \renewcommand{\thefigure}{S\arabic{figure}}
 
+\hypertarget{appendix-s1-for-a-positive-feedback-between-fuel-connectivity-burn-severity-and-seedbank-survivorship-drives-the-annual-grass-fire-cycle-in-a-semi-arid-shrubland.-submitted-to-ecology}{%
+\section{\texorpdfstring{Appendix S1 for: ``A positive feedback between
+fuel connectivity, burn severity, and seedbank survivorship drives the
+annual grass-fire cycle in a semi-arid shrubland.'' Submitted to
+\emph{Ecology}}{Appendix S1 for: ``A positive feedback between fuel connectivity, burn severity, and seedbank survivorship drives the annual grass-fire cycle in a semi-arid shrubland.'' Submitted to Ecology}}\label{appendix-s1-for-a-positive-feedback-between-fuel-connectivity-burn-severity-and-seedbank-survivorship-drives-the-annual-grass-fire-cycle-in-a-semi-arid-shrubland.-submitted-to-ecology}}
+
+Adam L. Mahood\textsuperscript{1,2,\texttt{*}}, Michael J.
+Koontz\textsuperscript{2}, Jennifer K. Balch\textsuperscript{1,2}
+
+\small
+
+\textsuperscript{1} Department of Geography, University of Colorado
+Boulder, Boulder, CO, USA
+
+\textsuperscript{2} Earth Lab, University of Colorado, Boulder, CO, USA
+
+\texttt{*} Corresponding author:
+\href{mailto:admahood@gmail.com}{\nolinkurl{admahood@gmail.com}}
+
+\normalsize
+
+\newpage
+
+\includegraphics{images/map.png} \newpage
+
+\begin{figure}
+\centering
+\includegraphics{images/depth_x_burned_counts.png}
+\caption{Total seed counts per plot.}
+\end{figure}
+
+\newpage
+
 Table S1. Vegetation indexes that were explored in the remote sensing
 analysis for hypothesis 1.
 
@@ -115,9 +148,29 @@ NDTI & \(\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}\)\tabularnewline
 
 \newpage
 
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-2}Model performance metrics}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{lrrl}
+\toprule
+Model & R2 & R2\_adjusted & Sign\\
+\midrule
+H1: TVC \textasciitilde{} NDSVI + Green NDVI & 0.35 &  & +\\
+H1: dNBR \textasciitilde{} TVC(modelled) & 0.42 & 0.42 & +\\
+H1: dNBR \textasciitilde{} TVC(in situ) & 0.27 & 0.20 & +\\
+H3: Post-Fire Fuel Connectivity \textasciitilde{} \# Cheatgrass Seeds + covariates & 0.84 & 0.75 & +\\
+H4: Post-Fire Diversity \textasciitilde{} Post-Fire Fuel Connectivity & 0.92 & 0.89 & -\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-2}Seeds germinated in the greenhouse from the cores we collected.}
+\caption{\label{tab:unnamed-chunk-3}Seeds germinated in the greenhouse from the cores we collected.}
 \resizebox{\linewidth}{!}{
 \fontsize{8}{10}\selectfont
 \begin{tabular}[t]{lrrrrrrrrrrrrrr}
@@ -187,35 +240,6 @@ Burn Severity (dNBR) & 195 & 307 & 300 & 226 & 266 & 143 & 211 & 191 & 99 & 181 
 
 \newpage
 
-\begin{table}
-
-\caption{\label{tab:unnamed-chunk-3}Model performance metrics}
-\centering
-\fontsize{8}{10}\selectfont
-\begin{tabular}[t]{lrrl}
-\toprule
-Model & R2 & R2\_adjusted & Sign\\
-\midrule
-H1: TVC \textasciitilde{} NDSVI + Green NDVI & 0.35 &  & +\\
-H1: dNBR \textasciitilde{} TVC(modelled) & 0.42 & 0.42 & +\\
-H1: dNBR \textasciitilde{} TVC(in situ) & 0.27 & 0.20 & +\\
-H3: Post-Fire Fuel Connectivity \textasciitilde{} \# Cheatgrass Seeds + covariates & 0.84 & 0.75 & +\\
-H4: Post-Fire Diversity \textasciitilde{} Post-Fire Fuel Connectivity & 0.92 & 0.89 & -\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\newpage
-\newpage
-
-\begin{figure}
-\centering
-\includegraphics{images/depth_x_burned_counts.png}
-\caption{Total seed counts per plot.}
-\end{figure}
-
-\newpage
-
 \begin{figure}
 \centering
 \includegraphics{images/jsdm_stuff.png}
@@ -234,6 +258,24 @@ variable is given in the legend. Species are ordered by prevalence.}
 \centering
 \includegraphics{images/richness_fig.png}
 \caption{Species richness at different sampling times and locations.}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth,height=\textheight]{images/burnsev_fig.pdf}
+\caption{Visual illustration of the relationship between fuel
+connectivity and burn severity. On the left, panel a shows the
+intershrub space invaded by annual grasses. The photo in panel b was
+taken in the exact same place two weeks later, days after all of the
+biomass was consumed by the fire. Panel C is a closeup of the soil
+surface, showing in more detail how the litter was also almost
+completely consumed by the fire. On the right, the photos in panels d
+and e were on opposite sides of a fire line in an area that had minimal
+annual grass invasion over a broad area, and thus lower fuel
+connectivity. Note the remaining plants and stumps in panel e and the
+presence of only partially consumed litter in panel f.}
 \end{figure}
 
 \end{document}

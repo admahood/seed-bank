@@ -1,5 +1,5 @@
 ---
-fontsize: 11pt
+fontsize: 12pt
 geometry: margin=1in
 header-includes: \newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0}
   \renewcommand{\thefigure}{S\arabic{figure}}}
@@ -12,6 +12,21 @@ output:
 
 \beginsupplement
 
+# Appendix S1 for: "A positive feedback between fuel connectivity, burn severity, and seedbank survivorship drives the annual grass-fire cycle in a semi-arid shrubland." Submitted to *Ecology*
+
+Adam L. Mahood^1,2,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2^
+
+\small
+
+^1^ Department of Geography, University of Colorado Boulder, Boulder, CO, USA
+
+^2^ Earth Lab, University of Colorado, Boulder, CO, USA
+
+`*` Corresponding author: admahood@gmail.com
+
+\normalsize
+
+\newpage
 
 ```{r, message=F, echo=F, warning=F, results='asis'}
 library(knitr)
@@ -20,7 +35,12 @@ library(kableExtra)
 options(knitr.kable.NA = '')
 ```
 
+![The 2016 Hot Pot Fire. Blue points represent sampling locations and the shaded color is the burn severity. The checkerboard pattern on the lower left corresponds to patterns of land ownership.](images/map.png)
+\newpage
 
+![Total seed counts per plot.](images/depth_x_burned_counts.png)
+
+\newpage
 
 Table S1. Vegetation indexes that were explored in the remote sensing analysis for hypothesis 1.
 
@@ -32,33 +52,6 @@ Table S1. Vegetation indexes that were explored in the remote sensing analysis f
 |EVI|  $\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5$|
 |NDSVI|$\frac{SWIR_1 - Red}{SWIR_1 + Red}$|
 |NDTI|$\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}$|
-
-\newpage
-
-
-```{r,message=F, echo=F, warning=F, results='asis'}
-striped_index <- seq(3,33,2) # can delete once the bug is fixed
-read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
-  dplyr::select(-species) %>%
-  kable(caption = "Seeds germinated in the greenhouse from the cores we collected.", 
-        format="latex",
-      booktabs=T) %>%
-  kable_styling(position="left",
-                font_size = 8,
-                latex_options = c("hold_position", "scale_down"), 
-                stripe_index = seq(3,33,2)) %>%
-  group_rows("B. tectorum",     2, 5, italic=T)%>%
-  group_rows("P. secunda",      6, 9, italic=T)%>%
-  group_rows("A. tridentata",   10,13, italic=T)%>%
-  group_rows("A. desertorum",   14,17, italic=T) %>%
-  group_rows("C. testiculatum", 18,21, italic=T) %>%
-  group_rows("C. parviflora",   22,25, italic=T) %>%
-  group_rows("S. altissimum",   26,29, italic=T) %>%
-  group_rows("M. gracilis",     30,33, italic=T) %>%
-  group_rows("Other species",   34,34, italic=F) %>%
-  footnote(general = c("U = Unburned", "B = Burned", "T2 = Top 2 cm", "B4 = Bottom 4 cm"))
-
-```
 
 \newpage
 
@@ -91,11 +84,35 @@ performance::compare_performance(mod_aim, predmod, rdnbr_mod,mod_pf_ff,mod_divsh
 
 ```
 
-<!-- ![Modelled abundance of germinable seeds for all species found at more than one location along a gradient of burn severity (RdNBR). Black line is the mean prediction. Upper axis limit is cut off at 17 seeds for ease of visualization.](images/poisson_preds_rdnbr.png) -->
-\newpage
+
 \newpage
 
-![Total seed counts per plot.](images/depth_x_burned_counts.png)
+
+```{r,message=F, echo=F, warning=F, results='asis'}
+striped_index <- seq(3,33,2) # can delete once the bug is fixed
+read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
+  dplyr::select(-species) %>%
+  kable(caption = "Seeds germinated in the greenhouse from the cores we collected.", 
+        format="latex",
+      booktabs=T) %>%
+  kable_styling(position="left",
+                font_size = 8,
+                latex_options = c("hold_position", "scale_down"), 
+                stripe_index = seq(3,33,2)) %>%
+  group_rows("B. tectorum",     2, 5, italic=T)%>%
+  group_rows("P. secunda",      6, 9, italic=T)%>%
+  group_rows("A. tridentata",   10,13, italic=T)%>%
+  group_rows("A. desertorum",   14,17, italic=T) %>%
+  group_rows("C. testiculatum", 18,21, italic=T) %>%
+  group_rows("C. parviflora",   22,25, italic=T) %>%
+  group_rows("S. altissimum",   26,29, italic=T) %>%
+  group_rows("M. gracilis",     30,33, italic=T) %>%
+  group_rows("Other species",   34,34, italic=F) %>%
+  footnote(general = c("U = Unburned", "B = Burned", "T2 = Top 2 cm", "B4 = Bottom 4 cm"))
+
+```
+
+
 
 \newpage
 
@@ -107,3 +124,6 @@ performance::compare_performance(mod_aim, predmod, rdnbr_mod,mod_pf_ff,mod_divsh
 
 ![Species richness at different sampling times and locations.](images/richness_fig.png)
 
+\newpage
+
+![Visual illustration of the relationship between fuel connectivity and burn severity. On the left, panel a shows the intershrub space invaded by annual grasses. The photo in panel b was taken in the exact same place two weeks later, days after all of the biomass was consumed by the fire. Panel C is a closeup of the soil surface, showing in more detail how the litter was also almost completely consumed by the fire. On the right, the photos in panels d and e were on opposite sides of a fire line in an area that had minimal annual grass invasion over a broad area, and thus lower fuel connectivity. Note the remaining plants and stumps in panel e and the presence of only partially consumed litter in panel f.](images/burnsev_fig.pdf){ width=50% }
