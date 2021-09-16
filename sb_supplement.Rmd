@@ -12,7 +12,8 @@ output:
 
 \beginsupplement
 
-# Appendix S1 for: "A positive feedback between fuel connectivity, burn severity, and seedbank survivorship drives the annual grass-fire cycle in a semi-arid shrubland." Submitted to *Ecology*
+# Appendix S1 for: "Fuel connectivity, burn severity, and seedbank survivorship drive the grass fire cycle in a semi-arid shrubland." 
+<!---Submitted to *Ecology*-->
 
 Adam L. Mahood^1,2,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2^
 
@@ -36,6 +37,7 @@ options(knitr.kable.NA = '')
 ```
 
 ![The 2016 Hot Pot Fire. Blue points represent sampling locations and the shaded color is the burn severity. The checkerboard pattern on the lower left corresponds to patterns of land ownership.](images/map.png)
+
 \newpage
 
 ![Total seed counts per plot.](images/depth_x_burned_counts.png)
