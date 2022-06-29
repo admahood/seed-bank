@@ -13,12 +13,12 @@ library(effects)
 
 mod1 <- left_join(fuel_continuity, rdnbr, by="plot") %>%
   filter(year == 2016 & burned == "u") %>%
-  lm(rdnbr_p~ff_continuity, data=.)
+  lm(rdnbr_mean~ff_continuity, data=.)
 
 mod2 <- left_join(sb_counts_no_brte, rdnbr, by="plot") %>%
   left_join(fuel_continuity %>% filter(year==2016), y=.) %>%
   filter(burned=="b") %>%
-  glm.nb(count ~rdnbr_p,data=.)
+  glm.nb(count ~rdnbr_mean,data=.)
 
 summary(mod1);summary(mod2)
 

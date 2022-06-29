@@ -5,14 +5,16 @@
 \documentclass[
   12pt,
 ]{article}
+\author{}
+\date{\vspace{-2.5em}}
+
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -42,7 +44,7 @@
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -84,21 +86,18 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-
-\author{}
-\date{\vspace{-2.5em}}
 
 \begin{document}
 
 \renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0} \renewcommand{\thefigure}{S\arabic{figure}}
 
-\hypertarget{appendix-s1-for-fuel-connectivity-burn-severity-and-seedbank-survivorship-drive-the-grass-fire-cycle-in-a-semi-arid-shrubland.}{%
+\hypertarget{appendix-s1-for-fuel-connectivity-burn-severity-and-seedbank-survivorship-drive-ecosystem-transformation-in-a-semi-arid-shrubland.}{%
 \section{Appendix S1 for: ``Fuel connectivity, burn severity, and
-seedbank survivorship drive the grass fire cycle in a semi-arid
-shrubland.''}\label{appendix-s1-for-fuel-connectivity-burn-severity-and-seedbank-survivorship-drive-the-grass-fire-cycle-in-a-semi-arid-shrubland.}}
+seedbank survivorship drive ecosystem transformation in a semi-arid
+shrubland.''}\label{appendix-s1-for-fuel-connectivity-burn-severity-and-seedbank-survivorship-drive-ecosystem-transformation-in-a-semi-arid-shrubland.}}
 
 Adam L. Mahood\textsuperscript{1,2,\texttt{*}}, Michael J.
 Koontz\textsuperscript{2}, Jennifer K. Balch\textsuperscript{1,2}
@@ -140,16 +139,15 @@ analysis for hypothesis 1.
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-Index Name & Equation\tabularnewline
+Index Name & Equation \\
 \midrule
 \endhead
-Green NDVI & \(\frac{NIR - Green}{NIR + Green}\)\tabularnewline
-SAVI & \(\frac{NIR - Red}{NIR+Red} + 1.5\)\tabularnewline
-NDVI & \(\frac{NIR - Red}{NIR + Red}\)\tabularnewline
-EVI &
-\(\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5\)\tabularnewline
-NDSVI & \(\frac{SWIR_1 - Red}{SWIR_1 + Red}\)\tabularnewline
-NDTI & \(\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}\)\tabularnewline
+Green NDVI & \(\frac{NIR - Green}{NIR + Green}\) \\
+SAVI & \(\frac{NIR - Red}{NIR+Red} + 1.5\) \\
+NDVI & \(\frac{NIR - Red}{NIR + Red}\) \\
+EVI & \(\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5\) \\
+NDSVI & \(\frac{SWIR_1 - Red}{SWIR_1 + Red}\) \\
+NDTI & \(\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}\) \\
 \bottomrule
 \end{longtable}
 
@@ -265,24 +263,6 @@ variable is given in the legend. Species are ordered by prevalence.}
 \centering
 \includegraphics{images/richness_fig.png}
 \caption{Species richness at different sampling times and locations.}
-\end{figure}
-
-\newpage
-
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth,height=\textheight]{images/burnsev_fig.pdf}
-\caption{Visual illustration of the relationship between fuel
-connectivity and burn severity. On the left, panel a shows the
-intershrub space invaded by annual grasses. The photo in panel b was
-taken in the exact same place two weeks later, days after all of the
-biomass was consumed by the fire. Panel C is a closeup of the soil
-surface, showing in more detail how the litter was also almost
-completely consumed by the fire. On the right, the photos in panels d
-and e were on opposite sides of a fire line in an area that had minimal
-annual grass invasion over a broad area, and thus lower fuel
-connectivity. Note the remaining plants and stumps in panel e and the
-presence of only partially consumed litter in panel f.}
 \end{figure}
 
 \end{document}

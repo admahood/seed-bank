@@ -131,7 +131,7 @@ if(final_run){
   samples <- 1000
   transient = ceiling(thin*samples*.5)
 }
-mpfn <- "data/mp_mod_prob_landsat.Rda"
+# mpfn <- "data/mp_mod_prob_landsat.Rda"
 mpfn <- "data/mp_mod_prob_mtbs_dnbr.Rda"
 dir.create("mcmc")
 if(final_run) mpfn <- str_replace(mpfn, ".Rda", "_final.Rda")
@@ -355,8 +355,9 @@ p_preds <- pred_df_raw  %>%
         strip.text = element_text(face = "italic"),
         legend.background = element_rect(fill="transparent"),
         legend.title = element_blank(),
-        panel.border = element_rect(fill=NA, size =.75))+
-  ggsave(fn_rdnbr, width=10.5, height=6.5)
+        panel.border = element_rect(fill=NA, size =.75))
+
+ggsave(p_preds, filename = fn_rdnbr, width=10.5, height=6.5)
 
 save(p_preds, file = "data/binomial_preds_plot.Rda")
 

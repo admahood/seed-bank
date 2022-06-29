@@ -21,14 +21,18 @@ p1 <- ggplot(d, aes(x=ff_continuity, y=rdnbr_b120)) +
   geom_line(data = mod2_eff,aes(y=fit)) +
   geom_line(data = mod2_eff,lty=2, aes(y=lwr))+
   geom_line(data = mod2_eff,lty=2, aes(y=upr)) +
-  xlab("*in situ* TVC") +
+  xlab("Pre-Fire *in situ* TVC") +
   ylab("Burn Severity (dNBR)") +
   theme_classic()+
   theme(panel.border = element_rect(fill=NA, size =1),
-        axis.title.x = element_markdown())+
-  ggsave("images/fc_fig.png")
+        axis.title.x = element_markdown())
+
+# ggsave("images/fc_fig.png")
 
 load("data/rs_H1.Rda")
+
+rs_h1<-rs_h1 +
+  xlab("Pre-Fire Modelled TVC")
 
 # H2a effects on div ==================
 
@@ -82,15 +86,11 @@ plot3a <- function(mod, label){
       theme(panel.border = element_rect(fill=NA, size =.75))
   )
 }
-# ggarrange(
-#   plot3a(mod = shan_modt, "Shannon-Weaver Diversity (Top 2 cm)"),
-#   plot3a(mod = shan_modb, "Shannon-Weaver Diversity (Bottom 4 cm)"),
-#   common.legend = TRUE, nrow=2)+
-#   ggsave("images/path2a.png")
+
 
 
 # H3 veg/div effects on continuity =========================================
-plot4 <- function(mod, label,nrow){
+plot_h3 <- function(mod, label,nrow, which = "all"){
   effr<-Effect("n_brte", partial.residuals=T, mod)
   effe<-Effect("elevation", partial.residuals=T, mod)
   efff<-Effect("n_pose", partial.residuals=T, mod)
@@ -131,6 +131,29 @@ plot4 <- function(mod, label,nrow){
                          variable = "*B. tectorum* Seeds m^-2",
                          col = p %>% filter(var == "n_brte") %>% pull(col),
                          value = effr$x$n_brte)
+  
+  if(which == "brte"){
+    return(ggplot(mod_effr, aes(x = value))+
+             geom_line(aes(y=fit)) +
+             geom_point(data = res_df %>%
+                          dplyr::filter(variable == "*B. tectorum* Seeds m^-2"),
+                        aes(y=res)) +
+             scale_color_manual(values = c("black", "grey"))+
+             geom_line(aes(y=upr), lty=2) +
+             geom_line(aes(y=lwr), lty=2) +
+             xlab("*B. tectorum* Seeds m^-2") +
+             ylab("Post-Fire Fuel Connectivity")+
+             ylim(c(39.5,110))+
+             theme_classic()+
+             theme(legend.title = element_blank(),
+                   axis.title.x = ggtext::element_markdown(),
+                   legend.position = "none",
+                   legend.justification = c(0,1),
+                   legend.background = element_rect(fill = "transparent"))+
+             theme(panel.border = element_rect(fill=NA, size =.75))
+           )
+  }
+  
   mod_effe <- data.frame(lwr = (effe$lower), 
                          upr = (effe$upper), 
                          fit = (effe$fit), 
@@ -188,14 +211,12 @@ plot4 <- function(mod, label,nrow){
     }
     return(ggarrange(plotlist = pp, nrow = 1))
 }
-# plot4(mod_pf_ff, label = "Post-Fire Fuel Connectivity (% Cover)",
-#       nrow=2)+
-#   ggsave("images/path3.png")
+
 
 
 # H4 =======================================================================
 
-plot3b <- function(mod, label){
+plot_h4 <- function(mod, label, which = "all"){
   effe<-Effect("elevation", partial.residuals=T, mod)
   efff<-Effect("ff_continuity", partial.residuals=T, mod)
   
@@ -218,6 +239,27 @@ plot3b <- function(mod, label){
                          fit = (efff$fit), 
                          variable = "Post-Fire Fuel Connectivity",
                          value = efff$x$ff_continuity)
+  
+  if(which == "ff"){
+    return(
+      ggplot(mod_efff, aes(x=value)) +
+        geom_line(aes(y=fit)) +
+        geom_point(data = res_df %>%
+                     dplyr::filter(variable == "Post-Fire Fuel Connectivity"),aes(y=res)) +
+        geom_line(aes(y=upr), lty=2) +
+        geom_line(aes(y=lwr), lty=2) +
+        xlab("Post-Fire Fuel Connectivity") +
+        ylab("Post-Fire Diversity")+
+        ylim(c(1,2)) +
+        theme_classic() +
+        theme(legend.title = element_blank(),
+              axis.title.x = ggtext::element_markdown(),
+              legend.position = "none",
+              legend.justification = c(0,1),
+              legend.background = element_rect(fill = "transparent"),
+              panel.border = element_rect(fill=NA, size =.75))
+    )
+  }
   
   bigdf <- rbind(mod_efff,mod_effe)
   pp<- list()
@@ -266,22 +308,34 @@ plot3b <- function(mod, label){
 
 ## All together plot===================
 load("data/binomial_preds_plot.Rda")
+load("data/path_model.Rda")
 
-H1 <- ggarrange(p1,rs_h1 + geom_point(alpha=0.25),labels=c("(a)", ""), nrow=1)+
+H1 <- ggarrange(p1,rs_h1 + geom_point(alpha=0.25),labels=c("(b)", ""), nrow=1)+
   theme(panel.border = element_rect(fill=NA, size = 1))
 
-H4 <-  ggarrange(plot3b(mod_divsh_ff, label = "Post-Fire Diversity"))+
+H4 <-  ggarrange(plot_h4(mod_divsh_ff, label = "Post-Fire Diversity", which = "ff"),
+                 labels = c("(d)"))+
             theme(panel.border = element_rect(fill=NA, size = 1))
 H14 <- ggarrange(H1, H4, nrow=1, labels = c("(a)", "(d)"))
 
-H2<-  ggarrange(p_preds + xlab ("Burn Severity (dNBR)"), labels = c("(b)"))+
+
+H2<-  ggarrange(p_preds + xlab ("Burn Severity (dNBR)"), labels = c("(e)"))+
     theme(panel.border = element_rect(fill=NA, size = 1))
 
-H3<- ggarrange(plot4(mod_pf_ff, label = "Post-Fire Fuel Connectivity",nrow=1),labels="(c)")+
+H3<- ggarrange(plot_h3(mod_pf_ff, 
+                       label = "Post-Fire Fuel Connectivity",nrow=1, which="brte"),labels="(c)")+
   theme(panel.border = element_rect(fill=NA, size = 1))
 
-bp<-ggarrange(H14, H2, H3, nrow=3, ncol=1, heights = c(1,1.5,1))+
-  ggsave("images/big_plot.pdf", height = 10, width=10)
+H34 <- ggarrange(H3, H4, nrow=1)
+
+H134 <- ggarrange(H1, H34, nrow = 2)
+
+Hp134 <- ggarrange(pm_fig, H134, nrow=1, labels = c("(a)", ""))+
+  theme(panel.border = element_rect(fill=NA, size = 1))
+
+bp<-ggarrange(Hp134, H2, nrow=2, ncol=1)
+
+ggsave(bp, filename = "images/big_plot_v2.pdf", height = 10, width=10, bg="white")
 
 # diversity for supplement =======================
 seeds_per_sq_meter<- function(seeds){
