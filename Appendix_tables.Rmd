@@ -1,0 +1,95 @@
+---
+fontsize: 12pt
+geometry: margin=1in
+header-includes: \newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0}
+  \renewcommand{\thefigure}{S\arabic{figure}}}
+ 
+output:
+  pdf_document: 
+    keep_tex: yes
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(dplyr)
+library(kableExtra)
+options(knitr.kable.NA = '')
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+```
+
+
+\beginsupplement
+
+\newpage
+
+Table S1. Vegetation indexes that were explored in the remote sensing analysis for hypothesis 1.
+
+| Index Name | Equation |
+|---------|------------|
+|Green NDVI|$\frac{NIR - Green}{NIR + Green}$|
+|SAVI|$\frac{NIR - Red}{NIR+Red} + 1.5$|
+|NDVI|$\frac{NIR - Red}{NIR + Red}$|
+|EVI|  $\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5$|
+|NDSVI|$\frac{SWIR_1 - Red}{SWIR_1 + Red}$|
+|NDTI|$\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}$|
+
+
+\newpage
+
+```{r, warning=F, message=F, echo=F}
+# table of model results
+
+# source("R/rs_analysis.R")
+# source("R/modelling.R")
+load("data/rs_mods.Rda")
+load("data/main_mods.Rda")
+
+library(performance)
+library(kableExtra)
+library(tidyverse)
+
+performance::compare_performance(mod_aim, predmod, rdnbr_mod,mod_pf_ff,mod_divsh_ff) %>%
+  as_tibble() %>%
+  mutate(Model = c("H1: TVC ~ NDSVI + Green NDVI",
+                     "H1: dNBR ~ TVC(modelled)",
+                     "H1: dNBR ~ TVC(in situ)",
+                     "H3: Post-Fire Fuel Connectivity ~ # Cheatgrass Seeds + covariates",
+                     "H4: Post-Fire Diversity ~ Post-Fire Fuel Connectivity"),
+         Sign = c("+", "+", "+", "+", "-")) %>%
+  dplyr::select(Model, R2, R2_adjusted, Sign) %>%
+  mutate(R2 = round(R2, 2),
+         R2_adjusted = round(R2_adjusted,2))%>%
+  kable(booktabs=TRUE, 
+        caption = "Model performance metrics") %>%
+  kable_styling(font_size = 8)
+
+```
+
+\newpage
+
+
+```{r,message=F, echo=F, warning=F, results='asis'}
+
+striped_index <- seq(3,33,2) # can delete once the bug is fixed
+read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
+  dplyr::select(-species) %>%
+  kable(caption = "Seeds germinated in the greenhouse from the cores we collected.", 
+        format="latex",
+      booktabs=T) %>%
+  kable_styling(position="left",
+                font_size = 8,
+                latex_options = c("hold_position", "scale_down"), 
+                stripe_index = seq(3,33,2)) %>%
+  group_rows("B. tectorum",     2, 5, italic=T)%>%
+  group_rows("P. secunda",      6, 9, italic=T)%>%
+  group_rows("A. tridentata",   10,13, italic=T)%>%
+  group_rows("A. desertorum",   14,17, italic=T) %>%
+  group_rows("C. testiculatum", 18,21, italic=T) %>%
+  group_rows("C. parviflora",   22,25, italic=T) %>%
+  group_rows("S. altissimum",   26,29, italic=T) %>%
+  group_rows("M. gracilis",     30,33, italic=T) %>%
+  group_rows("Other species",   34,34, italic=F) %>%
+  footnote(general = c("U = Unburned", "B = Burned", "T2 = Top 2 cm", "B4 = Bottom 4 cm"))
+
+```

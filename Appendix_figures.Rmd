@@ -1,0 +1,81 @@
+---
+fontsize: 12pt
+geometry: margin=1in
+header-includes: \newcommand{\beginsupplement} {\renewcommand{\thetable}{S\arabic{table}}      \setcounter{table}{0}
+  \renewcommand{\thefigure}{S\arabic{figure}}}
+ 
+output:
+  pdf_document: 
+    keep_tex: yes
+  word_document: default
+---
+
+\beginsupplement
+
+# Appendix S1 for: "Fuel connectivity, burn severity, and seedbank survivorship drive ecosystem transformation in a semi-arid shrubland." 
+
+<!-- -Submitted to *Ecology* -->
+
+Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2^
+
+\small
+
+^1^ Department of Geography, University of Colorado Boulder, Boulder, CO, USA
+
+^2^ Earth Lab, University of Colorado, Boulder, CO, USA
+
+^3^ Agricultural Research Service, United States Department of Agriculture, Fort Collins, CO, USA
+
+`*` Corresponding author: admahood@gmail.com
+
+\normalsize
+
+\newpage
+
+
+```{r, message=F, echo=F, warning=F, results='asis'}
+library(knitr)
+library(dplyr)
+library(kableExtra)
+library(tidyverse)
+options(knitr.kable.NA = '')
+```
+
+
+![Sites with little to no shrub cover require high IAG cover to meet the threshold necessary to carry a fire, while sites with higher shrub cover may reach that threshold with much lower IAG cover. Therefore, annual grass cover alone may not be sufficient for quantifying fire risk. Data Source: the Bureau of Land Managaement's Assessment, Inventory and Monitoring dataset. ](images/connectivity_is_not_brte_rank_double.png)
+
+
+
+\newpage
+
+
+![The 2016 Hot Pot Fire. Blue points represent sampling locations and the shaded color is the burn severity. The checkerboard pattern on the lower left corresponds to patterns of land ownership.](images/map.png)
+
+\newpage
+
+![Seed counts by species that occurred more than once. Panel a shows non-graminoids, b shows graminoids.](images/seed_counts.png)
+
+\newpage
+
+![Total seed counts per plot.](images/depth_x_burned_counts.png)
+
+
+
+
+\newpage
+
+
+![a) Model convergence diagnostics. On the left is the effective sample size after adjusting for autocorrelation (ideally 4,000), and on the right is the Gelman diagnostic, ideally 1. b) Predictor variables that had at least 80% support. Variables with 95% support are outlined in black. The level of transparency corresponds to the level of support. c) Variance partitioning by species. Average across all species per variable is given in the legend. Species are ordered by prevalence.](images/jsdm_stuff.png)
+
+
+\newpage
+
+![Panel a illustrates how we did not find convincing evidence that pre-fire cheagrass cover alone was predictive of any of the key components of our hypothesized feedback loop. Panel b shows how even pre-fire cheatgrass seed counts were not predictive of post-fire seed counts. Panel c shows the general change in structural composition, from woody to herbaceous, before and after the fire.](images/revresp1.png)
+
+\newpage
+
+
+![Species richness at different sampling times and locations.](images/richness_fig.png)
+
+
+
