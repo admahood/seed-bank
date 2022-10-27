@@ -61,7 +61,7 @@ performance::compare_performance(mod_aim, predmod, rdnbr_mod,mod_pf_ff,mod_divsh
   mutate(R2 = round(R2, 2),
          R2_adjusted = round(R2_adjusted,2))%>%
   kable(booktabs=TRUE, 
-        caption = "Model performance metrics") %>%
+        caption = "Model performance metrics.") %>%
   kable_styling(font_size = 8)
 
 ```
@@ -93,3 +93,39 @@ read.csv("/home/a/projects/seed_bank/data/counts_modified_byhand1.csv") %>%
   footnote(general = c("U = Unburned", "B = Burned", "T2 = Top 2 cm", "B4 = Bottom 4 cm"))
 
 ```
+
+\newpage
+
+```{r}
+library(lavaan)
+load("data/pathmod.Rda")
+resid(pathmod, "cor")$cov %>%
+  round(3) %>%
+  as_tibble(rownames = "x") %>%
+  kable(booktabs=T, caption = "Covriance matrix for the path model.") %>%
+  kable_styling(latex_options = c("scale_down", "hold_position"))
+
+```
+
+
+\newpage
+
+```{r}
+sem_df <- data.frame(measure = c("degrees of freedom","p-value", "Chi-Square",  
+                                 "Comparative Fit Index", "Tucker-Lewis Index",
+                                 "Root Mean Square Error of Approximation", 
+                                 "Standardized Root Mean Square Residual"), 
+                     value = NA)
+
+sem_df[1,2] <- pathmod@Fit@test[[1]]$df
+sem_df[2,2] <- round(pathmod@Fit@test[[1]]$pvalue,2)
+sem_df[3,2] <- round(pathmod@Fit@test[[1]]$stat,2)
+sem_df[4,2] <- round(fitmeasures(pathmod, "cfi") %>% as.numeric,2)
+sem_df[5,2] <- round(fitmeasures(pathmod, "tli") %>% as.numeric,2)
+sem_df[6,2] <- round(fitmeasures(pathmod, "rmsea") %>% as.numeric,2)
+sem_df[7,2] <- round(fitmeasures(pathmod, "srmr") %>% as.numeric,2)
+  
+kable(sem_df, booktabs=T, caption = "Path model fit measures.",  linesep = "") %>%
+  kable_styling(latex_options = "hold_position")
+```
+

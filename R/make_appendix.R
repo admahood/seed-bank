@@ -11,8 +11,8 @@ rmarkdown::render("Appendix_tables.Rmd")
 x=date()
 x=strsplit(x," ")[[1]]
 
-system("pdftk Appendix_figures.pdf Appendix_tables.pdf cat output Appendix_S1.pdf")
+system("pdftk Appendix_figures.pdf Appendix_tables.pdf cat output Appendix_S1_preprint.pdf")
 
 # make full paper
 
-system("pdftk sb_manuscript.pdf Appendix_S1.pdf cat output full_manuscript.pdf")
+system("pdftk sb_manuscript.pdf Appendix_S1_preprint.pdf cat output preprint.pdf")

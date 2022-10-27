@@ -142,7 +142,7 @@ plot_h3 <- function(mod, label,nrow, which = "all"){
              geom_line(aes(y=upr), lty=2) +
              geom_line(aes(y=lwr), lty=2) +
              xlab("*B. tectorum* Seeds m^-2") +
-             ylab("Post-Fire Fuel Connectivity")+
+             ylab("Post-Fire TVC")+
              ylim(c(39.5,110))+
              theme_classic()+
              theme(legend.title = element_blank(),
@@ -199,7 +199,7 @@ plot_h3 <- function(mod, label,nrow, which = "all"){
     
     if(i == "*B. tectorum* Seeds m^-2"){
      pp[[counter]] <- pp[[counter]]+
-       ylab(label = "Post-Fire Fuel Connectivity")
+       ylab(label = "Post-Fire TVC")
     }else{
       pp[[counter]] <- pp[[counter]]+
         theme(axis.title.y = element_blank(),
@@ -228,7 +228,7 @@ plot_h4 <- function(mod, label, which = "all"){
                   data.frame(res =  efff$fit[closest(efff$data$ff_continuity, 
                                                      efff$x$ff_continuity)] + efff$residuals, 
                              value = efff$data$ff_continuity,
-                             variable = "Post-Fire Fuel Connectivity"))
+                             variable = "Post-Fire TVC"))
   mod_effe <- data.frame(lwr = (effe$lower), 
                          upr = (effe$upper), 
                          fit = (effe$fit), 
@@ -237,7 +237,7 @@ plot_h4 <- function(mod, label, which = "all"){
   mod_efff <- data.frame(lwr = (efff$lower), 
                          upr = (efff$upper), 
                          fit = (efff$fit), 
-                         variable = "Post-Fire Fuel Connectivity",
+                         variable = "Post-Fire TVC",
                          value = efff$x$ff_continuity)
   
   if(which == "ff"){
@@ -245,10 +245,10 @@ plot_h4 <- function(mod, label, which = "all"){
       ggplot(mod_efff, aes(x=value)) +
         geom_line(aes(y=fit)) +
         geom_point(data = res_df %>%
-                     dplyr::filter(variable == "Post-Fire Fuel Connectivity"),aes(y=res)) +
+                     dplyr::filter(variable == "Post-Fire TVC"),aes(y=res)) +
         geom_line(aes(y=upr), lty=2) +
         geom_line(aes(y=lwr), lty=2) +
-        xlab("Post-Fire Fuel Connectivity") +
+        xlab("Post-Fire TVC") +
         ylab("Post-Fire Diversity")+
         ylim(c(1,2)) +
         theme_classic() +
@@ -283,7 +283,7 @@ plot_h4 <- function(mod, label, which = "all"){
             legend.background = element_rect(fill = "transparent"),
             panel.border = element_rect(fill=NA, size =.75))
     
-    if(i == "Post-Fire Fuel Connectivity"){
+    if(i == "Post-Fire TVC"){
       pp[[counter]] <- pp[[counter]]+
         ylab(label = "Post-Fire Diversity")+
         theme(panel.border = element_rect(fill=NA, size = 1))
@@ -323,7 +323,7 @@ H2<-  ggarrange(p_preds + xlab ("Burn Severity (dNBR)"), labels = c("(e)"))+
     theme(panel.border = element_rect(fill=NA, size = 1))
 
 H3<- ggarrange(plot_h3(mod_pf_ff, 
-                       label = "Post-Fire Fuel Connectivity",nrow=1, which="brte"),labels="(c)")+
+                       label = "Post-Fire TVC",nrow=1, which="brte"),labels="(c)")+
   theme(panel.border = element_rect(fill=NA, size = 1))
 
 H34 <- ggarrange(H3, H4, nrow=1)
@@ -335,7 +335,8 @@ Hp134 <- ggarrange(pm_fig, H134, nrow=1, labels = c("(a)", ""))+
 
 bp<-ggarrange(Hp134, H2, nrow=2, ncol=1)
 
-ggsave(bp, filename = "images/big_plot_v2.pdf", height = 10, width=10, bg="white")
+ggsave(bp, filename = "images/big_plot_v2.pdf", height = 13, width=13, bg="white")
+ggsave(bp, filename = "images/big_plot_v2.png", height = 13, width=13, bg="white")
 
 # diversity for supplement =======================
 seeds_per_sq_meter<- function(seeds){

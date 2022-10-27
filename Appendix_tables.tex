@@ -34,12 +34,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -72,6 +66,12 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -86,9 +86,9 @@ Table S1. Vegetation indexes that were explored in the remote sensing
 analysis for hypothesis 1.
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule
+\toprule()
 Index Name & Equation \\
-\midrule
+\midrule()
 \endhead
 Green NDVI & \(\frac{NIR - Green}{NIR + Green}\) \\
 SAVI & \(\frac{NIR - Red}{NIR+Red} + 1.5\) \\
@@ -96,14 +96,14 @@ NDVI & \(\frac{NIR - Red}{NIR + Red}\) \\
 EVI & \(\frac{NIR - Red}{NIR + (6 * Red) - (7.5 * Blue) + 1}*2.5\) \\
 NDSVI & \(\frac{SWIR_1 - Red}{SWIR_1 + Red}\) \\
 NDTI & \(\frac{SWIR_1 - SWIR_2}{SWIR_1 + SWIR_2}\) \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \newpage
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-1}Model performance metrics}
+\caption{\label{tab:unnamed-chunk-1}Model performance metrics.}
 \centering
 \fontsize{8}{10}\selectfont
 \begin{tabular}[t]{lrrl}
@@ -189,6 +189,51 @@ Burn Severity (dNBR) & 195 & 307 & 300 & 226 & 266 & 143 & 211 & 191 & 99 & 181 
 \multicolumn{15}{l}{\rule{0pt}{1em}T2 = Top 2 cm}\\
 \multicolumn{15}{l}{\rule{0pt}{1em}B4 = Bottom 4 cm}\\
 \end{tabular}}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-3}Covriance matrix for the path model.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrr}
+\toprule
+x & Bromus\_seeds\_post & prefire\_TVC & ag\_div\_pre & sb\_div\_pre & burn\_sev & postfire\_TVC & elv & Bromus\_cv\_pre\\
+\midrule
+Bromus\_seeds\_post & 0.000 & 0.006 & 0.035 & 0.002 & 0.019 & 0.016 & -0.075 & 0.048\\
+prefire\_TVC & 0.006 & 0.000 & -0.040 & -0.003 & -0.025 & -0.007 & -0.005 & -0.001\\
+ag\_div\_pre & 0.035 & -0.040 & 0.000 & 0.000 & 0.005 & -0.012 & 0.088 & 0.000\\
+sb\_div\_pre & 0.002 & -0.003 & 0.000 & 0.000 & 0.000 & 0.028 & -0.001 & 0.000\\
+burn\_sev & 0.019 & -0.025 & 0.005 & 0.000 & 0.000 & -0.002 & 0.048 & -0.002\\
+\addlinespace
+postfire\_TVC & 0.016 & -0.007 & -0.012 & 0.028 & -0.002 & 0.000 & -0.036 & 0.046\\
+elv & -0.075 & -0.005 & 0.088 & -0.001 & 0.048 & -0.036 & 0.000 & 0.000\\
+Bromus\_cv\_pre & 0.048 & -0.001 & 0.000 & 0.000 & -0.002 & 0.046 & 0.000 & 0.000\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-4}Path model fit measures.}
+\centering
+\begin{tabular}[t]{lr}
+\toprule
+measure & value\\
+\midrule
+degrees of freedom & 4.00\\
+p-value & 0.92\\
+Chi-Square & 0.93\\
+Comparative Fit Index & 1.00\\
+Tucker-Lewis Index & 1.47\\
+Root Mean Square Error of Approximation & 0.00\\
+Standardized Root Mean Square Residual & 0.03\\
+\bottomrule
+\end{tabular}
 \end{table}
 
 \end{document}

@@ -16,7 +16,7 @@ output:
 
 <!-- -Submitted to *Ecology* -->
 
-Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2^
+Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2,4^
 
 \small
 
@@ -25,6 +25,8 @@ Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2^
 ^2^ Earth Lab, University of Colorado, Boulder, CO, USA
 
 ^3^ Agricultural Research Service, United States Department of Agriculture, Fort Collins, CO, USA
+
+^4^ Environmental Data Science Innovation and Inclusion Lab, University of Colorado, Boulder, CO, USA
 
 `*` Corresponding author: admahood@gmail.com
 
@@ -40,9 +42,6 @@ library(kableExtra)
 library(tidyverse)
 options(knitr.kable.NA = '')
 ```
-
-
-![Sites with little to no shrub cover require high IAG cover to meet the threshold necessary to carry a fire, while sites with higher shrub cover may reach that threshold with much lower IAG cover. Therefore, annual grass cover alone may not be sufficient for quantifying fire risk. Data Source: the Bureau of Land Managaement's Assessment, Inventory and Monitoring dataset. ](images/connectivity_is_not_brte_rank_double.png)
 
 
 

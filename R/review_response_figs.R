@@ -21,6 +21,7 @@ d <- left_join(sb_counts_brte, rdnbr) %>%
 
 library(MASS)
 
+# alternate hypotheses =========================================================
 mod1<-lm(rdnbr_mean ~ brte + Elevation, d)
 mod2<-glm.nb(postfire_brte_count ~ brte+Elevation, data=d);summary(mod2)
 
@@ -55,9 +56,6 @@ seed2seed<-sb_counts_brte %>%
 
 ggsave(seed2seed, filename = "images/seed2seed.png", height=3.5, width=3.5, bg="white")
 
-
-
-
 mod4<- sb_counts_brte %>%
   pivot_wider(names_from = burned, values_from = count) %>%
   glm.nb(b~u, data=.)
@@ -67,8 +65,9 @@ bind_rows(broom::tidy(mod1) %>% mutate(model = "burn_severity ~ prefire_brte_cov
           broom::tidy(mod2) %>% mutate(model = "prefire_fuel_connectivity ~ prefire_brte_cover"),
           broom::tidy(mod4) %>% mutate(model = "postfire_brte_seeds ~ prefire_brte_seeds"))
 
-
-# r1.14 L 352. “almost all of the plots … lacked any structural heterogeneity.” This is interesting. Do your data demonstrate this? 
+# barplots =====================================================================
+# r1.14 L 352. “almost all of the plots … lacked any structural heterogeneity.” 
+# This is interesting. Do your data demonstrate this? 
 
 barplot <- div %>%
   mutate(fg = lut_duration_lf[species]) %>%
@@ -129,7 +128,7 @@ table_str <-  li %>%
   group_by(state, variable) %>%
   summarise(cover = mean(cover, na.rm=TRUE))
 
-# aim plots
+# aim plots ====================================================================
 
 aim <- st_read("data/blm_aim/gbd_plots_w_precip_5_20_19_points.gpkg")
 
@@ -143,9 +142,19 @@ mod5 <- lm(TotalFolia ~ InvAnnGras, aim); summary(mod5)
 mod6 <- lm(TotalFolia ~ InvAnnGras*SagebrushC, aim); summary(mod6)
 
 
-# sem I guess ===========
-
+# Path model ================================================
+new_node_names <- c("prefire_TVC" = "Pre-fire\nconnectivity",
+                    "burn_sev" = "Burn\nSeverity",
+                    "Bromus_seeds_post" = "Post-fire Bromus Seeds",
+                    "postfire_TVC" = "Post-fire\nconnectivity",
+                    "Bromus_cv_pre" = "Pre-fire\nBromus cover",
+                    "sb_div_pre" = "Pre-fire\nSeedbank\nDiversity",
+                    "ag_div_pre" = "Pre-fire\nAboveground\nDiversity",
+                    "elv" = "Elevation")
+# h1
 library(lavaan)
+source("R/ggplot_sem_sb.R")
+
 d1 <- d %>%
   left_join(fuel_continuity %>% filter(state == "postfire3") %>%
               dplyr::select(postfire_TVC = ff_continuity, plot)) %>%
@@ -162,12 +171,12 @@ d1 <- d %>%
               dplyr::select(sb_div_post=shannon, plot))
   
   
-pathmod <- 'Bromus_seeds_post ~ burn_sev + ag_div_pre + sb_div_pre + Bromus_cv_pre + prefire_TVC  +elv
+pathmod <- 'Bromus_seeds_post ~ burn_sev + ag_div_pre + sb_div_pre  + prefire_TVC#+ Bromus_cv_pre #+elv
             prefire_TVC ~ elv + ag_div_pre + Bromus_cv_pre
             ag_div_pre ~ Bromus_cv_pre + sb_div_pre
             # Bromus_cv_pre ~ elv
             sb_div_pre ~ prefire_TVC + Bromus_cv_pre + elv # h2a
-            burn_sev ~  prefire_TVC + ag_div_pre + elv + Bromus_cv_pre 
+            burn_sev ~  prefire_TVC + ag_div_pre + elv + Bromus_cv_pre + sb_div_pre
             postfire_TVC ~ Bromus_seeds_post  + prefire_TVC + ag_div_pre + burn_sev + Bromus_cv_pre + elv
            ' %>%
   lavaan::sem(data=d1)
@@ -180,11 +189,13 @@ fit_stats<-lavaan::fitMeasures(pathmod) %>%
   round(3) %>%
   as_tibble(rownames = "metric") %>%
   filter(metric %in% c("tli", "cfi", "rmsea", "srmr"))
+
+save(pathmod, file = "data/pathmod.Rda")
 resid(pathmod, "cor")$cov
 
 
 layout_df <-  random_layout(pathmod) %>%
-  mutate(x=replace(x, metric=="prefire_TVC", 0),
+  dplyr::mutate(x=replace(x, metric=="prefire_TVC", 0),
          y=replace(y, metric=="prefire_TVC", 1),
          x=replace(x, metric=="burn_sev", 1),
          y=replace(y, metric=="burn_sev", 0),
@@ -192,7 +203,6 @@ layout_df <-  random_layout(pathmod) %>%
          y=replace(y, metric=="Bromus_seeds_post", -1),
          x=replace(x, metric=="postfire_TVC", -1),
          y=replace(y, metric=="postfire_TVC", 0),
-         
          x=replace(x, metric=="Bromus_cv_pre", 1.2),
          y=replace(y, metric=="Bromus_cv_pre", 1.2),
          x=replace(x, metric=="elv", -1.2),
@@ -203,14 +213,16 @@ layout_df <-  random_layout(pathmod) %>%
          y=replace(y, metric=="sb_div_pre", -1.2))
 
 # edit to show p thresholds... maybe add stars to edge labels?
-source("R/ggplot_sem_sb.R")
 
-pm_fig<-ggsem(pathmod, layout = "manual", layout_df = layout_df, alpha=0.1, title = "")
+pm_fig<-ggsem(pathmod, layout = "manual", layout_df = layout_df, alpha=0.05, 
+              rename_nodes = T,new_node_names = new_node_names,
+              title = "")
 ggsave(pm_fig, filename = "images/path_mod.png", height = 9, width=11, bg="white")
 save(pm_fig, file = "data/path_model.Rda")
 
 
-# sup fig
+# sup fig ======================================================================
+library(ggimage)
 blm_aim <- st_read("data/blm_aim/gbd_plots_w_precip_5_20_19_points.gpkg") %>%
   st_set_geometry(NULL) %>%
   # filter(NonInvShru > 10 & InvAnnGras>0) %>%
@@ -249,6 +261,8 @@ ff_fig1 <- ggplot(blm_aim,# %>% filter(NonInvShru > 10 & InvAnnGras>0),
 
 ggsave(ff_fig1, filename= "images/connectivity_is_not_brte_rank_double.png",
        width=11, height=9, bg="white")
+
+
 
 ggarrange(pm_fig, ff_fig1, nrow=1, labels = c("(a)", "(b)")) %>%
   ggsave(filename = "images/concept_2pan.png", 
