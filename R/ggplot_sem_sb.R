@@ -154,7 +154,8 @@ ggsem <- function(fit, filename, title="Path Model",layout_df = NA, rename_nodes
     theme(#plot.title = element_text(size = 30),
           legend.position = "none",
           plot.background = element_rect(color="black", fill="transparent")
-          )
+          )+
+    theme_graph(base_family = 'Helvetica')
   if(length(title) ==1)p1 <- p1 + ggtitle(title[1]) else p1 <- p1 + ggtitle(title[1], title[2])
   if(rename_nodes){ p1 <- p1 + geom_node_text(aes(label = new_node_names_df$new_names),
                                              fontface = "bold",

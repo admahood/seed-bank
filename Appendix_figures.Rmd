@@ -14,7 +14,7 @@ output:
 
 # Appendix S1 for: "Fuel connectivity, burn severity, and seedbank survivorship drive ecosystem transformation in a semi-arid shrubland." 
 
-<!-- -Submitted to *Ecology* -->
+-Submitted to *Ecology*
 
 Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2,4^
 

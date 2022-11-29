@@ -46,7 +46,7 @@ Adam L. Mahood^1,2,3,`*`^, Michael J. Koontz^2^, Jennifer K. Balch^1,2,4^
 
 \normalsize
 
-Open Research Statement: Data and code to recreate the analysis are freely available at  https://doi.org/10.5281/zenodo.5293996. 
+Open Research Statement: All data and code used in the analysis are freely available at https://doi.org/10.5281/zenodo.5293996. The Bureau of Land Management’s Assessment, Inventory and Monitoring TerrADat dataset is available at version is available at: https://blm-gbp-hub-blm-egis.hub.arcgis.com/
 
 \newpage
 
@@ -61,40 +61,6 @@ We hypothesized that the novel grassland state is maintained via a reinforcing f
 *Keywords*: *Artemisia tridentata*, alternative stable states, *Bromus tectorum*, burn severity, cheatgrass, fuel connectivity, grass-fire cycle, joint species distribution model, resilience, sagebrush
 
 ## 1. Introduction
-
-<!-- Notes from JKB & MJK: -->
-
-<!-- Focus on Successive mechanisms leading to persistent state changes -->
-<!-- Where's the theory on reinforcing mechanisms (observationally documented?) (most of the stuff in p1 is correlative) -->
-<!-- Theoretical underpinning of ASS  --- chrisholm for mathematical models of state changes-->
-<!-- more examples of ASS in the world - kitzberger, ratajczak, hawaii(n-fixers) -->
-<!-- seed bank severity paragraph needs to be reduced to 2 or 3 sentences -->
-<!-- review comps references -->
-<!-- Interval squeeze, alee effects, demographic stuff (shriver e.g.) -->
-<!-- seed as an understudied demographic stage that is vulnerable to climate change (kling & ackerly, other refs) and key for studying ASS in many systems -->
-<!-- cite sean parks for severity increases -->
-<!-- General idea of severity is increasing from climate change, fuel connectivity increasing from biological invasions, seed bank survivorship is affected by both -->
-
-<!-- also, scheffer/levin/staver work about just observing time series, still no mechanisms 
-Aleman and Staver - spatial patterns and ASS - spatial effects are likely explained by mechanisms like unburned islands and post-fire dispersal  -->
-
-<!-- Ludwig 1978 - equations based on continuous mechanistic variables required for prediction of regime shifts - here we provide such variables for cheatgrass -->
-<!-- Boettiger 2013: Early warning signals -- high severity, high connectivity -->
-<!-- maybe cite shriver 2019, SCHLAEPFER 2021, on the regeneration bottleneck for sagebrush, highlight that the other side of the equation (CG) is also key, wrap it all together in a ludwig 1978 style conceptual model -->
-
-<!-- point from Aleman2020: "defining forest and savanna usingonly canopy structure misses key aspects of forest vs. savanna function tied to differences in the structure of the grass layer and in the tree species composition (1)" good thing to relate to about H4, differences in pre-fire TVS ~ diversity and post-fire TVC ~ diversity. basically, conversion to savannah changes function  - highlighting the shortcomings of using only structure, and the importance of understanding compostion as well-->
-
-
-<!-- BIG point to make - ASS is often theorized as a bivariate phenomenon, conditions on one axis, state on the other. Here, we have two conditions being driven by different things (that interact). maybe without the climate change, AGI will not fuel severe enough fires, on the flip side, maybe with climate change but without AGI, fuel connectivity will stay low, allowing sagebrush to survive prolonged drought -->
-
-<!-- Third driver -- grazing -->
-<!-- Kelly et al 2020 - science - multiple drivers affecting fire (gcc, lulc, invplants) -->
-<!-- ##### overview - Alternative stable states -->
-<!-- Keith 2010 - floristic composition predicts fire regime -->
-<!-- Goodwin 2021 GRL - climate driven tree mortality adds to fire intensity -->
-<!-- cite fusco, human grass fire cycle -->
-
-<!-- Add in fire/climate affecting diserpsal in space and in time through seedbank storage -->
 
 Ecosystems around the world are being affected simultaneously by multiple facets of global change. For example, changes in land use can facilitate exotic plant invasions [@Allan2015], which can alter ecosystem structure [@Davies2013]. Altered structure can change the likelihood of a disturbance, the properties of a disturbance and the capacity of the system to recover after a disturbance [@Brooks2004]. Global climate change can also directly affect the magnitude of disturbances [@Parks2020], and act as a demographic filter that influences how ecosystems recover after disturbances [@Rother2015; @Davis2019] via impacts on adult plant survival and seed dispersal [@Davis2018; @Eskelinen2020]. The combined effects of global change forces on structure, function and disturbance can cascade and interact. For example, while burn severity (or the proportion of biomass burned [@Keeley2009]) is influenced by vegetation structure [@Koontz2020; @Parks2018], it also increases with temperature and aridity [@Parks2020]. These forces can ultimately lead to permanent compositional change, biodiversity losses and the loss of ecosystem services [@Ratajczak2018; @Mahood2019; @Mahood2021] due to internal, self-reinforcing mechanisms that arise from those structural and functional changes which then maintain an alternative stable state [@Scheffer2003; @Ratajczak2018]. 
 
@@ -118,7 +84,7 @@ Here, we collected soil cores from 14 locations along the perimeter of a large f
 
 *2.1 Study Area*
 
-The study was conducted in north-central Nevada the day after a large fire (the Hot Pot Fire) was extinguished (Appendix S1, Fig. S1). The Hot Pot Fire burned just over 50,000 hectares in less than a week. The pre-fire landcover was predominantly *B. tectorum* and Wyoming big sagebrush plant communities. The fire occurred after the early season plants, including *B. tectorum* and *Poa secunda* J. Presl, the most abundant native understory species, had gone to seed, and before the late season species, including Wyoming big sagebrush, had produced flowers. Thus we were able to isolate the effect of the fire without any confounding effects of post-fire seed dispersal, while achieving a broad spatial extent. The sites we sampled ranged from 1,397 to 1,607 meters in elevation. 
+The study was conducted in north-central Nevada the day after a large fire (the Hot Pot Fire) was extinguished (Appendix S1: Fig. S1). The Hot Pot Fire burned just over 50,000 hectares in less than a week. The pre-fire landcover was predominantly *B. tectorum* and Wyoming big sagebrush plant communities. The fire occurred after the early season plants, including *B. tectorum* and *Poa secunda* J. Presl, the most abundant native understory species, had gone to seed, and before the late season species, including Wyoming big sagebrush, had produced flowers. Thus we were able to isolate the effect of the fire without any confounding effects of post-fire seed dispersal, while achieving a broad spatial extent. The sites we sampled ranged from 1,397 to 1,607 meters in elevation. 
 
 *2.2 Seed Bank Sampling* 
 
@@ -159,7 +125,7 @@ All analyses were done in R [@R]. Data and code to recreate the analysis are fre
 
 ## 3. Results
  
-We found support for each hypothesized component of the positive feedback loop independently and when combined in the path model ($\chi^2$ = 3.17, p = 0.39, Figure 4a, Appendix S1, Tables S4 & S5). For H1, TVC had a weak positive relationship with burn severity ($\beta$ = 2.4, p = 0.083, R$^2$ = 0.27, Figure 4b, Appendix S1: Table S2). For our remotely sensed analysis, Green NDVI, NDSVI and their interaction explained 35% of the variation in pre-fire TVC (Appendix S1: Table S2). This predicted TVC had a positive relationship with burn severity (p << 0.01, R$^2$ = .42, Figure 4b, Appendix S1: Table S2). 
+We found support for each hypothesized component of the positive feedback loop independently and when combined in the path model ($\chi^2$ = 3.17, p = 0.39, Figure 4a, Appendix S1: Tables S4 & S5). For H1, TVC had a weak positive relationship with burn severity ($\beta$ = 2.4, p = 0.083, R$^2$ = 0.27, Figure 4b, Appendix S1: Table S2). For our remotely sensed analysis, Green NDVI, NDSVI and their interaction explained 35% of the variation in pre-fire TVC (Appendix S1: Table S2). This predicted TVC had a positive relationship with burn severity (p << 0.01, R$^2$ = .42, Figure 4b, Appendix S1: Table S2). 
 
 
 The majority of seeds that germinated in the greenhouse were the two most common grass species, *P secunda* and *B. tectorum* (Appendix S1: Table S3, Fig. S2). Eight dicot species were found in more than one location, and these 10 prevalent species are those that were used in our JSDM. Burned sites had an average of 34 $\pm$ 32 total seeds in the top 2 cm, and 12 $\pm$ 14 in the bottom 4 cm. Unburned sites had an average of 299 $\pm$ 170 in the top 2 cm and 59 $\pm$ 29 in the bottom 4 cm (Appendix S1: Fig. S3). For H2, the JSDM converged well (Appendix S1: Fig S4). Gelman diagnostics were all very close to 1 and the effective sample size centered on 4,000, which indicated good model convergence. Elevation had the strongest effects on individual species occurrence and explained the most variance on average (36%). Burn severity explained 23% of the variance on average and was supported at the 95% level for 5 species (Appendix S1: Fig S2b). For the introduced species, the predictions along a gradient of burn severity were positive for *B. tectorum*, *Sisymbrium altissimum* L. and *Lepidium perfoliatum* L., and negative for *Ceratocephala testiculata* and *Alyssum desertorum* Stapf (Figure 4e). For native species, the effect of burn severity on occurrence was positive for *A. tridentata*, but the mean predictions were still low, never rising above 50%. It was neutral for *P. secunda* and negative for the remaining species. Testing H2a revealed a positive relationship between pre-fire aboveground species diversity and pre-fire fuel connectivity in the single model, and neutral relationships in the path model, and so we felt it was reasonable to rule out pre-fire fuel connectivity as a confounding factor for H2. Testing H2b showed a negative relationship, allowing us to rule out the idea that both pre-fire connectivity and post-fire seed bank composition were simply a function of pre-fire annual grass cover.
@@ -171,7 +137,7 @@ For H3, we found that, after accounting for elevation, pre-fire aboveground rich
 
 Here we document how changes in ecosystem structure brought on by invasion can lead to cascading effects on ecosystem function and composition via changes in the disturbance regime. It has already been shown that *B. tectorum* invasion increases fire frequency [@Balch2013], and is indicative of a grass-fire cycle. However, an understanding of the positive feedback mechanisms that link *B. tectorum* invasion success to fire occurrence is required to infer the long-term persistence of such a cycle. The interaction between burn severity and seed bank composition documented here may explain that link. Prior work has shown that annual grass invasion increases fuel connectivity by filling in shrub interspaces with a contiguous bed of fine fuels [@Davies2013]. This change in the spatial distribution of fine fuels has been associated with larger and more frequent fires [@Balch2013]. Here, we found higher fuel connectivity (via TVC) increased burn severity (H1, Figure 4b). Higher burn severity was associated with an increased occurrence of introduced annuals in the post-fire seedbank and a decreased occurrence of native plants with the exception of *A. tridentata* (H2, Figure 4e), but the gains of *A. tridentata* would likely not be enough to counter the gains of *B. tectorum*, especially after a few years of annual grass reproduction and population growth without similar gains for the shrubs [@Shriver2019]. Finally, greater abundance of *B. tectorum* seeds in the post-fire seedbank resulted in higher post-fire fuel connectivity (H3, Figure 4c). In addition, we found evidence that high post-fire fuel connectivity was associated with lower aboveground diversity (H4, Figure 4d). This suggests that during inter-fire intervals, there may be additional mechanisms (e.g. competition, altered ecohydrology) maintaining the post-fire, annual grass-dominated species assemblage.
 
-The difference in species composition before and after fire explains an apparent contradiction in results between H2a (positive to neutral relationship between pre-fire fuel connectivity and diversity) and H4 (negative relationship between post-fire fuel connectivity and diversity). Most site locations had mature canopies of native shrubs with the inter-shrub space occupied mostly by native bunchgrasses and forbs, with no fire occurrence since 1984. Even in locations with high annual grass cover between shrubs, shrubs provide ecosystem structural heterogeneity and islands of fertility [@Doescher1984; @Bechtold2007], and perennial natives that may have been established before invasion have deep roots established that allow for the avoidance of competition for water with shallow-rooted annuals [@Gibbens2001; @Ottaviani2020]. This may provide enough niche compartmentalization to allow native plants to persist in spite of the invasion prior to fire occurrence. Three years after fire, almost all of the sites were dominated by introduced annuals, and lacked any structural heterogeneity (Appendix S1, Fig. S6c). Thus native plants may have been able to persist via niche compartmentalization after the initial invasion, but fire burned away most of the seeds (Appendix S1, Fig. S3, S7) and removed all of the structural benefits, and microclimatic refugia that shrub cover provides. In this clean slate post-fire environment, the altered species composition of the seedbank and superior post-fire dispersal of *B. tectorum* [@Monty2013] allow the process of interspecific competition to be dominant [@Schlaepfer2014].
+The difference in species composition before and after fire explains an apparent contradiction in results between H2a (positive to neutral relationship between pre-fire fuel connectivity and diversity) and H4 (negative relationship between post-fire fuel connectivity and diversity). Most site locations had mature canopies of native shrubs with the inter-shrub space occupied mostly by native bunchgrasses and forbs, with no fire occurrence since 1984. Even in locations with high annual grass cover between shrubs, shrubs provide ecosystem structural heterogeneity and islands of fertility [@Doescher1984; @Bechtold2007], and perennial natives that may have been established before invasion have deep roots established that allow for the avoidance of competition for water with shallow-rooted annuals [@Gibbens2001; @Ottaviani2020]. This may provide enough niche compartmentalization to allow native plants to persist in spite of the invasion prior to fire occurrence. Three years after fire, almost all of the sites were dominated by introduced annuals, and lacked any structural heterogeneity (Appendix S1: Fig. S6c). Thus native plants may have been able to persist via niche compartmentalization after the initial invasion, but fire burned away most of the seeds (Appendix S1: Fig. S3, S7) and removed all of the structural benefits, and microclimatic refugia that shrub cover provides. In this clean slate post-fire environment, the altered species composition of the seedbank and superior post-fire dispersal of *B. tectorum* [@Monty2013] allow the process of interspecific competition to be dominant [@Schlaepfer2014].
 
 ***Contrasts among forests and shrublands as it pertains to remote sensing***
 
@@ -181,7 +147,7 @@ Spectral reflectance has long been used to characterize ecosystem structure, inc
 
 ***Management implications***
 
-These results demonstrate that the strength of the grass-fire cycle in this system is controlled by measurable fire properties and ecosystem structural components. We found that annual grass cover was not the single variable that explained burn severity and fuel connectivity (Appendix S1, Fig S5). Rather, it was the contribution of annual grass cover to the total connectivity of the system (Figure 2). The most important areas to prioritize for management interventions could paradoxically be areas with relatively low levels of annual grass cover that join previously disconnected vegetation. Land managers may be able to increase their chances of restoration success by using existing methods or developing novel ones that manipulate these components to weaken or even break the positive feedback cycle. This work provides further evidence that the post-fire annual grassland is a system where the degraded state represents an alternative species assemblage from that of the restoration target. Because the propagules of the original assemblage are no longer present, methods that rely on natural succession may not be sufficient [@Suding2004]. One-off seeding treatments have a low probability of success [@Pyke2020; @Arkle2022], and more labor-intensive methods involving site preparation [@Farrell2021], seed coating and priming [@Pedrini2020], as well as planting live plants [@Pyke2020] may improve the probability of success, as will prioritizing efforts in cooler, wetter years [@Bradford2018; @Hardegree2018; @Shriver2018]. Estimating burn severity using satellite imagery may be used in conjunction with site suitability and climate forecasts to help land managers identify areas with a greater likelihood of successful seeding. Our results highlight the importance of prioritizing the preservation of existing native shrub cover and in particular policies that encourage land managers to maximize the preservation of unburned patches within the fire perimeter during the suppression of wildfires in this system [@Steenvoorden2019], as these are the primary sources of native propagules and act as nurse plants [@Arkle2022]. In many areas, conditions are now or will in the near future be unsuitable for sagebrush due to annual grass dominance and increases in aridity [@Shriver2019]. In these areas it may still be feasible to restore the system’s ability to sequester carbon by planting other native woody species that are more drought tolerant and resilient against fire.
+These results demonstrate that the strength of the grass-fire cycle in this system is controlled by measurable fire properties and ecosystem structural components. We found that annual grass cover was not the single variable that explained burn severity and fuel connectivity (Appendix S1: Fig S5). Rather, it was the contribution of annual grass cover to the total connectivity of the system (Figure 2). The most important areas to prioritize for management interventions could paradoxically be areas with relatively low levels of annual grass cover that join previously disconnected vegetation. Land managers may be able to increase their chances of restoration success by using existing methods or developing novel ones that manipulate these components to weaken or even break the positive feedback cycle. This work provides further evidence that the post-fire annual grassland is a system where the degraded state represents an alternative species assemblage from that of the restoration target. Because the propagules of the original assemblage are no longer present, methods that rely on natural succession may not be sufficient [@Suding2004]. One-off seeding treatments have a low probability of success [@Pyke2020; @Arkle2022], and more labor-intensive methods involving site preparation [@Farrell2021], seed coating and priming [@Pedrini2020], as well as planting live plants [@Pyke2020] may improve the probability of success, as will prioritizing efforts in cooler, wetter years [@Bradford2018; @Hardegree2018; @Shriver2018]. Estimating burn severity using satellite imagery may be used in conjunction with site suitability and climate forecasts to help land managers identify areas with a greater likelihood of successful seeding. Our results highlight the importance of prioritizing the preservation of existing native shrub cover and in particular policies that encourage land managers to maximize the preservation of unburned patches within the fire perimeter during the suppression of wildfires in this system [@Steenvoorden2019], as these are the primary sources of native propagules and act as nurse plants [@Arkle2022]. In many areas, conditions are now or will in the near future be unsuitable for sagebrush due to annual grass dominance and increases in aridity [@Shriver2019]. In these areas it may still be feasible to restore the system’s ability to sequester carbon by planting other native woody species that are more drought tolerant and resilient against fire.
 
 
 Livestock grazing can reduce fuel connectivity in uninvaded sagebrush [@Davies2010]. At the same time, livestock grazing can decrease the resistance to invasion by *B. tectorum* via negative effects on biological soil crust (BSC) [@Condon2018], and can reduce the survival of *Artemisia* seedlings that are not protected by shrub canopies [@Owens1992]. Targeted spring grazing in annual grass monocultures may reduce fuel connectivity and alleviate fire risk. Post-fire grazing may help reduce *B. tectorum* cover, but it may also exacerbate the problem by introducing *B. tectorum* in uninvaded sites [@Williamson2019] or increasing the already superior post-fire dispersal of *B. tectorum* seeds [@Monty2013]. Management interventions should be specifically tailored each year to the conditions of a given site, and focused on native plant restoration.
@@ -197,7 +163,7 @@ An ecosystem "state" is the product of countless endogenous interactions. The gr
 
 ## Acknowledgements
 
-We thank Abdelhakim Farid, Julia Lopez, Dylan Murphy and C. Nick Whittemore for help in the field and in the greenhouse, and Lindsay P. Chiquoine, Thomas T. Veblen and two anonymous reviewers for constructive feedback that greatly improved the manuscript. We are grateful to everyone in the Winnemucca office of the Bureau of Land Management, the Central Nevada Interagency Dispatch Center, and CU Boulder's Ecology Evolution and Biology Greenhouse. This project was funded in part by the CU Boulder Undergraduate Research Opportunities Program and the Geography department's Adam Kolff Memorial Graduate Research Grant.
+We thank Abdelhakim Farid, Julia Lopez, Dylan Murphy and C. Nick Whittemore (Figure 1) for help in the field and in the greenhouse, and Lindsay P. Chiquoine, Thomas T. Veblen and two anonymous reviewers for constructive feedback that greatly improved the manuscript. We are grateful to everyone in the Winnemucca office of the Bureau of Land Management, the Central Nevada Interagency Dispatch Center, and CU Boulder's Ecology Evolution and Biology Greenhouse. This project was funded in part by the CU Boulder Undergraduate Research Opportunities Program and the Geography department's Adam Kolff Memorial Graduate Research Grant.
 
 ## References
 
@@ -218,21 +184,21 @@ We thank Abdelhakim Farid, Julia Lopez, Dylan Murphy and C. Nick Whittemore for 
 
 
 
-\newpage
+<!-- \newpage -->
 
-![.](images/burnsev_fig.pdf){ width=75% }
+<!-- ![.](images/burnsev_fig.pdf){ width=75% } -->
 
-\newpage
+<!-- \newpage -->
 
-![.](images/fig2_seed_bank.pdf)
+<!-- ![.](images/fig2_seed_bank.pdf) -->
 
-\newpage
+<!-- \newpage -->
 
-![.](images/conceptual_figure.png)
+<!-- ![.](images/conceptual_figure.png) -->
 
-\newpage
+<!-- \newpage -->
 
-![.](images/big_plot_v2.pdf)
+<!-- ![.](images/big_plot_v2.pdf) -->
 
 
 

@@ -176,10 +176,13 @@ ph3 <- ggsem(pm_h3,
 
 
 p_final<- ggarrange(ph1, ph2, ph3, ph2a, ph2b, make_legend(), nrow=2, ncol=3)
-
+extrafont::loadfonts()
 ggsave(plot = p_final, 
          filename = "images/conceptual_figure.png", 
-         bg="white", height=11, width=17)
+         bg="white", height=11, width=17, dpi=600)
 ggsave(plot = p_final, 
-       filename = "images/conceptual_figure.pdf", 
+       filename = "images/conceptual_figure.jpg", 
+       bg="white", height=11, width=17, dpi=600)
+ggsave(plot = p_final, 
+       filename = "images/conceptual_figure.png", 
        bg="white", height=11, width=17)
