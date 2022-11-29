@@ -3,12 +3,12 @@
 [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.5293996.svg)](https://doi.org/10.5281/zenodo.5293996)
 
 
-This repository houses the code for our upcoming paper, "Fuel connectivity, burn severity, and seedbank survivorship drive ecosystem transformation in a semi-arid shrubland." Please feel free to message me with questions about the code or analysis
+This repository houses the code for our upcoming paper, "Fuel connectivity, burn severity, and seedbank survivorship drive ecosystem transformation in a semi-arid shrubland." Please feel free to message me with questions about the code or analysis.
 
 
 # **Figure S1** Map of the study area
 
-Different patterns of land use and land cover are evident in the patterns of burn severyity. Particularily of note is the visibility of the checkerboard pattern of public/private land ownership that occurs around the I-80 interstate.
+Different patterns of land use and land cover are evident in the patterns of burn severity. Particularily of note is the visibility of the checkerboard pattern of public/private land ownership that occurs around the I-80 interstate.
 
 ![](images/map.png)
 
