@@ -12,6 +12,18 @@ Different patterns of land use and land cover are evident in the patterns of bur
 
 ![](images/map.png)
 
+# Figure S5. Looking only at cheatgrass doesn't explain much
+
+We initially thought it would be pretty simple to just plot burn severity against cheatgrass cover. Turns out, we didn't find much.
+
+Panel a illustrates how we did not find convincing evidence that pre-fire cheagrass
+cover alone was predictive of any of the key components of our hypothesized feedback loop.
+Panel b shows how even pre-fire cheatgrass seed counts were not predictive of post-fire
+seed counts. Panel c shows the general change in structural composition, from woody to
+herbaceous, before and after the fire.
+
+![](images/revresp1.png)
+
 # **Figure 2.** The importance of structure over taxonomic identity
 
 Sites with little to no shrub cover require high IAG cover to meet the threshold necessary to carry a fire, while sites with higher shrub cover may reach that threshold with much lower IAG cover. Therefore, annual grass cover alone may not be sufficient for quantifying fire risk. Panel a illustrates this point using publicly available data from the Bureau of Land Management's Assessment, Inventory and Monitoring dataset. Panels b and c show quadrats at a site with high, pre-fire native perennial cover weeks before and days after the Hot Pot fire, which burned at high severity at that site. 
