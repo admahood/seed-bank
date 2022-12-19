@@ -36,6 +36,16 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={RoyalBlue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={RoyalBlue},
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \makeatletter
@@ -82,16 +92,6 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  colorlinks=true,
-  linkcolor={RoyalBlue},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={RoyalBlue},
-  pdfcreator={LaTeX via pandoc}}
 
 \author{}
 \date{\vspace{-2.5em}}
@@ -100,10 +100,10 @@
 
 \pagenumbering{arabic}
 
-Running head: Burn severity and ecosystem transformation
-
 Title: Fuel connectivity, burn severity, and seedbank survivorship drive
-ecosystem transformation in a semi-arid shrubland.
+ecosystem
+
+transformation in a semiarid shrubland.
 
 Adam L. Mahood\textsuperscript{1,2,3,\texttt{*}}, Michael J.
 Koontz\textsuperscript{2}, Jennifer K. Balch\textsuperscript{1,2,4}
@@ -126,11 +126,10 @@ Lab, University of Colorado, Boulder, CO
 
 \normalsize
 
-Open Research Statement: All data and code used in the analysis are
-freely available at \url{https://doi.org/10.5281/zenodo.5293996}. The
-Bureau of Land Management's Assessment, Inventory and Monitoring
-TerrADat dataset is available at version is available at:
-\url{https://blm-gbp-hub-blm-egis.hub.arcgis.com/}
+Open Research Statement: All data and code
+(\protect\hyperlink{ref-mahoodzenodo}{Mahood and Koontz 2022}) used in
+the analysis are freely available at
+\url{https://zenodo.org/record/7374835\#.Y6Dn5BXMIuU}.
 
 \newpage
 
@@ -153,28 +152,27 @@ large fires than the shrubland it replaced. But the mechanisms by which
 pre-fire invasion and fire occurrence are linked to higher post-fire
 flammability are not fully understood. A natural experiment to explore
 these interactions presented itself when we arrived in northern Nevada
-immediately after a 50,000 ha wildfire was extinguished.
-
-We hypothesized that the novel grassland state is maintained via a
-reinforcing feedback where higher fuel connectivity increases burn
-severity, which subsequently increases post-fire IAG dispersal, seed
-survivorship, and fuel connectivity. We used a Bayesian joint species
-distribution model and structural equation model framework to assess the
-strength of the support for each element in this feedback pathway. We
-found that pre-fire fuel connectivity increased burn severity and that
-higher burn severity had mostly positive effects on the occurrence of
-IAG and another non-native species, and mostly negative or neutral
-relationships with all other species. Finally, we found that the
-abundance of IAG seeds in the seedbank immediately post-fire had a
-positive effect on the fuel connectivity 3 years after fire, completing
-a positive feedback promoting IAG. These results demonstrate that the
-strength of the positive feedback is controlled by measurable
-characteristics of ecosystem structure, composition and disturbance.
-Further, each node in the loop is affected independently by multiple
-global change drivers. It is possible that these characteristics can be
-modeled to predict threshold behavior and inform management actions to
-mitigate or slow the establishment of the grass-fire cycle, perhaps via
-targeted restoration applications or pre-fire fuel treatments.
+immediately after a 50,000 ha wildfire was extinguished. We hypothesized
+that the novel grassland state is maintained via a reinforcing feedback
+where higher fuel connectivity increases burn severity, which
+subsequently increases post-fire IAG dispersal, seed survivorship, and
+fuel connectivity. We used a Bayesian joint species distribution model
+and structural equation model framework to assess the strength of the
+support for each element in this feedback pathway. We found that
+pre-fire fuel connectivity increased burn severity and that higher burn
+severity had mostly positive effects on the occurrence of IAG and
+another non-native species, and mostly negative or neutral relationships
+with all other species. Finally, we found that the abundance of IAG
+seeds in the seedbank immediately post-fire had a positive effect on the
+fuel connectivity 3 years after fire, completing a positive feedback
+promoting IAG. These results demonstrate that the strength of the
+positive feedback is controlled by measurable characteristics of
+ecosystem structure, composition and disturbance. Further, each node in
+the loop is affected independently by multiple global change drivers. It
+is possible that these characteristics can be modeled to predict
+threshold behavior and inform management actions to mitigate or slow the
+establishment of the grass-fire cycle, perhaps via targeted restoration
+applications or pre-fire fuel treatments.
 
 \emph{Keywords}: \emph{Artemisia tridentata}, alternative stable states,
 \emph{Bromus tectorum}, burn severity, cheatgrass, fuel connectivity,
@@ -953,14 +951,15 @@ shallow-rooted ecosystems that lose carbon to grazing and fire
 \subsection{Acknowledgements}\label{acknowledgements}}
 
 We thank Abdelhakim Farid, Julia Lopez, Dylan Murphy and C. Nick
-Whittemore for help in the field and in the greenhouse, and Lindsay P.
-Chiquoine, Thomas T. Veblen and two anonymous reviewers for constructive
-feedback that greatly improved the manuscript. We are grateful to
-everyone in the Winnemucca office of the Bureau of Land Management, the
-Central Nevada Interagency Dispatch Center, and CU Boulder's Ecology
-Evolution and Biology Greenhouse. This project was funded in part by the
-CU Boulder Undergraduate Research Opportunities Program and the
-Geography department's Adam Kolff Memorial Graduate Research Grant.
+Whittemore (Figure 1) for help in the field and in the greenhouse, and
+Lindsay P. Chiquoine, Thomas T. Veblen and two anonymous reviewers for
+constructive feedback that greatly improved the manuscript. We are
+grateful to everyone in the Winnemucca office of the Bureau of Land
+Management, the Central Nevada Interagency Dispatch Center, and CU
+Boulder's Ecology Evolution and Biology Greenhouse. This project was
+funded in part by the CU Boulder Undergraduate Research Opportunities
+Program and the Geography department's Adam Kolff Memorial Graduate
+Research Grant.
 
 \hypertarget{references}{%
 \subsection{References}\label{references}}
@@ -1322,6 +1321,11 @@ Changes in Carbon and Nitrogen Pools Caused by Annual Grass Invasion in
 a Semiarid Shrubland.''} \emph{Global Change Biology} 28 (1): 267--84.
 \url{https://doi.org/10.1111/gcb.15921}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-mahoodzenodo}{}}%
+Mahood, Adam L., and Michael J. Koontz. 2022. \emph{Admahood/Seed-Bank:
+Accepted} (version v1.0-accepted). Zenodo.
+\url{https://doi.org/10.5281/zenodo.7374835}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Maia2012}{}}%
 Maia, P., J. G. Pausas, V. Arcenegui, C. Guerrero, A. Pérez-Bejarano, J.
 Mataix-Solera, M. E. T. Varela, I. Fernandes, E. T. Pedrosa, and J. J.
@@ -1648,7 +1652,8 @@ completely consumed by the fire. On the right, the photos in panels d
 and e were on opposite sides of a fire line in an area that had minimal
 annual grass invasion over a broad area, and thus lower fuel
 connectivity. Note the remaining plants and stumps in panel e and the
-presence of only partially consumed litter in panel f.
+presence of only partially consumed litter in panel f.~Photo credit:
+Adam Mahood.
 
 \textbf{Figure 2.} Sites with little to no shrub cover require high IAG
 cover to meet the threshold necessary to carry a fire, while sites with
@@ -1658,7 +1663,8 @@ quantifying fire risk. Panel a illustrates this point using publicly
 available data from the Bureau of Land Management's Assessment,
 Inventory and Monitoring dataset. Panels b and c show quadrats at a site
 with high, pre-fire native perennial cover weeks before and days after
-the Hot Pot fire, which burned at high severity at that site.
+the Hot Pot fire, which burned at high severity at that site. Photo
+credit: Adam Mahood.
 
 \textbf{Figure 3.} Conceptual diagram of the hypotheses tested in this
 study.
