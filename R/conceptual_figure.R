@@ -175,11 +175,11 @@ ph3 <- ggsem(pm_h3,
              title = c("Hypothesis 3", "Bromus seed abundance and prefire TVC drive postfire TVC"));ph3
 
 
-p_final<- ggarrange(ph1, ph2, ph3, ph2a, ph2b, make_legend(), nrow=2, ncol=3)
-extrafont::loadfonts()
+p_final<- ggarrange(ph1 , ph2, ph3, ph2a, ph2b, make_legend(), nrow=2, ncol=3)
+
 ggsave(plot = p_final, 
          filename = "images/conceptual_figure.png", 
-         bg="white", height=11, width=17, dpi=600)
+         bg="white", height=11, width=18, dpi=600, units = "in")
 ggsave(plot = p_final, 
        filename = "images/conceptual_figure.jpg", 
        bg="white", height=11, width=17, dpi=600)
